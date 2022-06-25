@@ -1,15 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Question = sequelize.define('Question', {
-    ownerId: {
+  const Answer = sequelize.define('Answer', {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    title: {
-      type: DataTypes.STRING,
+    questionId: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
-    description: {
+    body: {
       type: DataTypes.TEXT,
       allowNull: true
     },
@@ -18,11 +18,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     }
   }, {});
-  Question.associate = function (models) {
+  Answer.associate = function (models) {
     // associations can be defined here
-    Question.belongsTo(models.User, { foreignKey: 'ownerId' });
-    Question.hasMany(models.Answer, { foreignKey: 'questionId' })
+    Answer.belongsTo(models.Question, { foreignKey: 'questionId' });
+    Answer.belongsTo(models.User, { foreignKey: 'userId' });
   };
-
-  return Question;
+  return Answer;
 };
