@@ -5,19 +5,25 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [
       {
-        email: 'demo@user.io',
-        username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        username: 'Goldie',
+        email: 'goldie@pupmail.com',
+        hashedPassword: bcrypt.hashSync('password'),
+        icon: '/media/icons/default-icon.png',
+        bio: "Hi, I'm Goldie! :)"
       },
       {
-        email: 'user1@user.io',
-        username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
+        username: 'Bones',
+        email: 'bones@pupmail.com',
+        hashedPassword: bcrypt.hashSync('password2'),
+        icon: '/media/icons/default-icon.png',
+        bio: 'Napping is when I do my best thinking'
       },
       {
-        email: 'user2@user.io',
-        username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
+        username: 'Cookie',
+        email: 'cookie@pupmail.com',
+        hashedPassword: bcrypt.hashSync('password3'),
+        icon: '/media/icons/default-icon.png',
+        bio: "I think it's fab to show off your individuality through fashion!"
       }
     ], {});
   },
