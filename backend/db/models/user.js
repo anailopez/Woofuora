@@ -29,6 +29,14 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
+    },
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    bio: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   },
     {
@@ -90,6 +98,8 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function (models) {
     // associations can be defined here
+    User.hasMany(models.Question, { foreignKey: 'ownerId' });
+    User.hasMany(models.Answer, { foreignKey: 'userId' });
   };
 
   return User;
