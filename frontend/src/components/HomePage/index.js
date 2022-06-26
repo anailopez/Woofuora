@@ -1,6 +1,14 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import AllQuestions from '../AllQuestions';
+
+
 const HomePage = () => {
     return (
-        <p>Questions/Answers will be here soon!!!! :)</p>
+        <div>
+            <AllQuestions />
+        </div>
     )
 }
 
