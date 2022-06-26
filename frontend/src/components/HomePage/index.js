@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import AllQuestions from '../AllQuestions';
+import CreateQuestionForm from '../CreateQuestionForm';
 
 
 const HomePage = () => {
     return (
         <div>
+            <CreateQuestionForm />
             <AllQuestions />
         </div>
     )

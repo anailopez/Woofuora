@@ -1,11 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_QUESTIONS = 'question/getAllQuestions';
+const ADD_QUESTION = 'question/addQuestion';
 
-// const questions = [
-//     { id: 1, ownerId: '3', title: "What do y'all like better: Greenies or Dentastix?", description: "My human is convinced she needs to buy me some of those teeth-cleaning treats (even though I brush my teeth aaaall the time) and she wants me to choose which ones I'd like. Any suggestions?", createdAt: new Date(), updatedAt: new Date() }
-// ]
-// console.log(questions)
 
 //regular action creator
 export const actionGetAllQuestions = (questions) => {
@@ -15,6 +12,12 @@ export const actionGetAllQuestions = (questions) => {
     };
 };
 
+export const actionAddQuestion = (question) => {
+    return {
+        type: ADD_QUESTION,
+        question
+    };
+};
 
 //thunk action creator
 export const thunkGetAllQuestions = () => async (dispatch) => {
@@ -26,6 +29,24 @@ export const thunkGetAllQuestions = () => async (dispatch) => {
         //WORKING!!! is an array of objs
         dispatch(actionGetAllQuestions(questions));
         return questions;
+    } else {
+        return await response.json();
+    }
+};
+
+export const thunkAddQuestion = (question) => async (dispatch) => {
+    const response = await csrfFetch('/api/questions', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(question)
+    });
+
+    if (response.ok) {
+        const newQuestion = await response.json();
+        dispatch(actionAddQuestion(newQuestion));
+        return newQuestion;
     } else {
         return await response.json();
     }
@@ -42,6 +63,10 @@ const questionsReducer = (state = initialState, action) => {
                 allQState[question.id] = question
             });
             return allQState;
+        case ADD_QUESTION:
+            const addQState = { ...state };
+            addQState[action.question.id] = action.question;
+            return addQState;
         // case DELETE:
         //     const newState = { ...state }
         //     delete newState[action.id/*(?)*/]
