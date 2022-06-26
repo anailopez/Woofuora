@@ -25,8 +25,6 @@ export const thunkGetAllQuestions = () => async (dispatch) => {
 
     if (response.ok) {
         const questions = await response.json();
-        // console.log('$$$$$', questions)
-        //WORKING!!! is an array of objs
         dispatch(actionGetAllQuestions(questions));
         return questions;
     } else {
@@ -35,13 +33,21 @@ export const thunkGetAllQuestions = () => async (dispatch) => {
 };
 
 export const thunkAddQuestion = (question) => async (dispatch) => {
+    const { ownerId, title, description, image } = question;
     const response = await csrfFetch('/api/questions', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(question)
+        body: JSON.stringify({
+            ownerId,
+            title,
+            description,
+            image
+        })
     });
+
+    console.log(response);
 
     if (response.ok) {
         const newQuestion = await response.json();

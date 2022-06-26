@@ -13,12 +13,13 @@ const AllQuestions = () => {
 
     return (
         <div>
-                {questions && Object.values(questions.map(question => (
-                    <div key={question.id}>
-                        <h2>{question.title}</h2>
-                        <p>{question.description}</p>
-                    </div>
-                )))}
+            {questions && questions.map(question => (
+                <div key={question.id}>
+                    <h2>{question.title}</h2>
+                    <p>{question.description}</p>
+                    <img src={question.image} />
+                </div>
+            ))}
         </div>
     )
 }
