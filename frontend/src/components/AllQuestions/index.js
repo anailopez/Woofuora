@@ -17,6 +17,7 @@ const AllQuestions = () => {
         dispatch(thunkGetAllQuestions());
     }, [dispatch]);
 
+
     return (
         <div>
             {questions && questionsArr.map(question => (
@@ -29,10 +30,12 @@ const AllQuestions = () => {
                     )}
                     <h2>{question.title}</h2>
                     <p>{question.description}</p>
-                    <img src={question.image} />
-                    {showEditForm && question.User.id === userId && buttonId === question.id && (
+                    {question.image && (
+                        <img src={question.image} />
+                    )}
+                    {question.User && showEditForm && question.User.id === userId && buttonId === question.id && (
                         <div>
-                            <EditQuestionForm questionId={question.id} />
+                            <EditQuestionForm questionId={question.id} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
                             <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
                         </div>
                     )}

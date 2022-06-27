@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkUpdateQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
 
-const EditQuestionForm = ({ questionId }) => {
+const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
@@ -57,12 +57,13 @@ const EditQuestionForm = ({ questionId }) => {
         setImage('');
         setValidationErrors([]);
         setHasSubmitted(false);
+        setShowEditForm(false);
     };
 
 
     return (
         <div>
-            {questionId && (
+            {showEditForm && (
                 <>
                     <h2>Want to make some changes to your question?</h2>
                     <ul>

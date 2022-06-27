@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkAddQuestion } from '../../store/questions';
+import { thunkGetAllQuestions } from '../../store/questions';
 
 const CreateQuestionForm = () => {
     const [title, setTitle] = useState('');
@@ -41,10 +42,12 @@ const CreateQuestionForm = () => {
 
         const question = await dispatch(thunkAddQuestion(newQuestion));
         console.log('after dispatch, from component', question)
-        
+
         if (question) {
             reset();
         }
+        
+        await dispatch(thunkGetAllQuestions());
     };
 
     const reset = () => {
