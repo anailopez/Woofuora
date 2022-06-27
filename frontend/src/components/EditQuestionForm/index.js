@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { thunkUpdateQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
 
@@ -12,8 +11,6 @@ const EditQuestionForm = ({ questionId }) => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const ownerId = useSelector(state => state.session.user.id);
-    const questions = useSelector((state) => state.allQuestions);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -62,43 +59,46 @@ const EditQuestionForm = ({ questionId }) => {
         setHasSubmitted(false);
     };
 
-    //similar to allQuestions component:
-    //maybe have another showEditForm that gets set to true if question id === question id?
+
     return (
         <div>
-            <h2>Want to make some changes to your question?</h2>
-            <ul>
-                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                    <li key={error}>{error}</li>
-                ))}
-            </ul>
-            <form onSubmit={handleSubmit}>
-                <label>Title</label>
-                <input
-                    type='text'
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                    placeholder='Title'
-                    name='title'
-                />
-                <label>Description</label>
-                <textarea
-                    onChange={(e) => setDescription(e.target.value)}
-                    value={description}
-                    name='description'
-                    placeholder='Description'
-                    rows='10'
-                />
-                <label>Image</label>
-                <input
-                    type='text'
-                    onChange={(e) => setImage(e.target.value)}
-                    value={image}
-                    placeholder='Image URL'
-                    name='image'
-                />
-                <button type='submit'>Update your question!</button>
-            </form>
+            {questionId && (
+                <>
+                    <h2>Want to make some changes to your question?</h2>
+                    <ul>
+                        {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                    <form onSubmit={handleSubmit}>
+                        <label>Title</label>
+                        <input
+                            type='text'
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                            placeholder='Title'
+                            name='title'
+                        />
+                        <label>Description</label>
+                        <textarea
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
+                            name='description'
+                            placeholder='Description'
+                            rows='10'
+                        />
+                        <label>Image</label>
+                        <input
+                            type='text'
+                            onChange={(e) => setImage(e.target.value)}
+                            value={image}
+                            placeholder='Image URL'
+                            name='image'
+                        />
+                        <button type='submit'>Update your question!</button>
+                    </form>
+                </>
+            )}
         </div>
     )
 }

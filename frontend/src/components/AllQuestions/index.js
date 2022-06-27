@@ -6,6 +6,7 @@ import EditQuestionForm from '../EditQuestionForm';
 
 const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
+    const [buttonId, setButtonId] = useState(null);
     const dispatch = useDispatch();
 
     const questions = useSelector((state) => state.allQuestions);
@@ -22,14 +23,14 @@ const AllQuestions = () => {
                 <div key={question.id}>
                     {question.User && (
                         <>
-                            <img src={question.User.icon}></img>
+                            <img src={question.User.icon} alt='icon' />
                             <h3>{question.User.username}'s question:</h3>
                         </>
                     )}
                     <h2>{question.title}</h2>
                     <p>{question.description}</p>
                     <img src={question.image} />
-                    {showEditForm && (
+                    {showEditForm && question.User.id === userId && buttonId === question.id && (
                         <div>
                             <EditQuestionForm questionId={question.id} />
                             <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
@@ -37,7 +38,7 @@ const AllQuestions = () => {
                     )}
                     {question.ownerId === userId && !showEditForm && (
                         <div>
-                            <button onClick={() => setShowEditForm(true)}>Edit</button>
+                            <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>Edit</button>
                             <button onClick={() => dispatch(thunkDeleteQuestion(question.id))}>Delete</button>
                         </div>
                     )}
