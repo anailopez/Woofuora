@@ -17,6 +17,17 @@ router.get('/', asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
     const question = await Question.create(req.body);
     return res.json(question);
-}))
+}));
+
+//delete a question
+router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const questionId = req.params.id;
+
+    //this is the prob
+    if (questionId) {
+        await Question.destroy({ where: { id: questionId } });
+        return res.json(questionId);
+    }
+}));
 
 module.exports = router;
