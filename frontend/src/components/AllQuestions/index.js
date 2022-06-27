@@ -9,8 +9,7 @@ const AllQuestions = () => {
     const [buttonId, setButtonId] = useState(null);
     const dispatch = useDispatch();
 
-    const questions = useSelector((state) => state.allQuestions);
-    const questionsArr = Object.values(questions);
+    const questionsArr = useSelector((state) => Object.values(state.allQuestions));
     const userId = useSelector(state => state.session.user.id);
 
     useEffect(() => {
@@ -20,7 +19,7 @@ const AllQuestions = () => {
 
     return (
         <div>
-            {questions && questionsArr.map(question => (
+            {questionsArr && questionsArr.map(question => (
                 <div key={question.id}>
                     {question.User && (
                         <>

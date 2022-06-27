@@ -4,9 +4,12 @@ import { thunkUpdateQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
 
 const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
+    const questionsArr = useSelector((state) => Object.values(state.allQuestions));
+    const question = questionsArr.find(question => question.id === questionId);
+
+    const [title, setTitle] = useState(question.title);
+    const [description, setDescription] = useState(question.description || '');
+    const [image, setImage] = useState(question.image || '');
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
