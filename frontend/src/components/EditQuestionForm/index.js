@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkAddQuestion } from '../../store/questions';
+import { useParams } from 'react-router-dom';
+import { thunkUpdateQuestion } from '../../store/questions';
 
-const CreateQuestionForm = () => {
+const EditQuestionForm = ({ questionId }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
@@ -32,16 +33,18 @@ const CreateQuestionForm = () => {
             return alert("Oops! Please fix errors with your question!");
         }
 
-        const newQuestion = {
+        const updatedQuestion = {
+            questionId: questionId,
             ownerId: ownerId,
             title,
             description,
             image
         };
 
-        const question = await dispatch(thunkAddQuestion(newQuestion));
-        console.log('after dispatch, from component', question)
-        
+        console.log(updatedQuestion);
+
+        const question = await dispatch(thunkUpdateQuestion(updatedQuestion));
+
         if (question) {
             reset();
         }
@@ -57,7 +60,7 @@ const CreateQuestionForm = () => {
 
     return (
         <div>
-            <h1>Post a new question!</h1>
+            <h2>Want to make some changes to your question?</h2>
             <ul>
                 {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
                     <li key={error}>{error}</li>
@@ -88,10 +91,10 @@ const CreateQuestionForm = () => {
                     placeholder='Image URL'
                     name='image'
                 />
-                <button type='submit'>Post your question</button>
+                <button type='submit'>Update your question!</button>
             </form>
         </div>
     )
 }
 
-export default CreateQuestionForm;
+export default EditQuestionForm;
