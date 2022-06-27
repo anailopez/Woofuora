@@ -31,9 +31,7 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
 
 //edit a question
 router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
-    //this works!
     const questionId = req.params.id;
-    //this works!
     const question = await Question.findOne({ where: { id: questionId } });
 
     if (question) {
