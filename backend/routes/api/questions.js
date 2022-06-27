@@ -1,6 +1,5 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-// const { requireAuth } = require('../../utils/auth.js');
 
 
 const router = express.Router();

@@ -1,13 +1,23 @@
 import { Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import AllQuestions from '../AllQuestions';
 import CreateQuestionForm from '../CreateQuestionForm';
 
 
 const HomePage = () => {
+    const user = useSelector(state => state.session.user);
+
     return (
         <div>
-            <CreateQuestionForm />
-            <AllQuestions />
+            {user ? (
+                <>
+                    <CreateQuestionForm />
+                    <AllQuestions />
+                </>
+            ) : (
+                <Redirect to='/login' />
+            )}
         </div>
     )
 }
