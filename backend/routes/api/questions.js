@@ -9,7 +9,7 @@ const { Question } = require('../../db/models');
 
 //get all questions
 router.get('/', asyncHandler(async (req, res) => {
-    const questions = await Question.findAll();
+    const questions = await Question.findAll({include: 'User'});
     return res.json(questions);
 }))
 
@@ -23,7 +23,6 @@ router.post('/', asyncHandler(async (req, res) => {
 router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     const questionId = req.params.id;
 
-    //this is the prob
     if (questionId) {
         await Question.destroy({ where: { id: questionId } });
         return res.json(questionId);

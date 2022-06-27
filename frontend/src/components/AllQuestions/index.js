@@ -19,6 +19,8 @@ const AllQuestions = () => {
         <div>
             {questions && questions.map(question => (
                 <div key={question.id}>
+                    <img src={question.User.icon}></img>
+                    <h3>{question.User.username}'s question:</h3>
                     <h2>{question.title}</h2>
                     <p>{question.description}</p>
                     <img src={question.image} />
