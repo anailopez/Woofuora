@@ -40,7 +40,8 @@ const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
             ownerId: ownerId,
             title,
             description,
-            image
+            image,
+            updatedAt: new Date()
         };
 
         console.log(updatedQuestion);

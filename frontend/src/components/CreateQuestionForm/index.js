@@ -37,7 +37,9 @@ const CreateQuestionForm = () => {
             ownerId: ownerId,
             title,
             description,
-            image
+            image,
+            createdAt: new Date(),
+            updatedAt: new Date()
         };
 
         const question = await dispatch(thunkAddQuestion(newQuestion));
@@ -46,7 +48,7 @@ const CreateQuestionForm = () => {
         if (question) {
             reset();
         }
-        
+
         await dispatch(thunkGetAllQuestions());
     };
 
