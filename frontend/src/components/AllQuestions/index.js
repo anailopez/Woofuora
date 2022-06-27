@@ -8,21 +8,24 @@ const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const dispatch = useDispatch();
 
-    const questions = useSelector((state) => Object.values(state.allQuestions));
+    const questions = useSelector((state) => state.allQuestions);
+    const questionsArr = Object.values(questions);
     const userId = useSelector(state => state.session.user.id);
 
     useEffect(() => {
         dispatch(thunkGetAllQuestions());
     }, [dispatch]);
 
-
-    //add onClick to buttons!
     return (
         <div>
-            {questions && questions.map(question => (
+            {questions && questionsArr.map(question => (
                 <div key={question.id}>
-                    <img src={question.User.icon}></img>
-                    <h3>{question.User.username}'s question:</h3>
+                    {question.User && (
+                        <>
+                            <img src={question.User.icon}></img>
+                            <h3>{question.User.username}'s question:</h3>
+                        </>
+                    )}
                     <h2>{question.title}</h2>
                     <p>{question.description}</p>
                     <img src={question.image} />

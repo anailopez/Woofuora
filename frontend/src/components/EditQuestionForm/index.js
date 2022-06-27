@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkUpdateQuestion } from '../../store/questions';
+import { thunkGetAllQuestions } from '../../store/questions';
 
 const EditQuestionForm = ({ questionId }) => {
     const [title, setTitle] = useState('');
@@ -10,7 +11,8 @@ const EditQuestionForm = ({ questionId }) => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    const ownerId = useSelector(state => state.session.user.id)
+    const ownerId = useSelector(state => state.session.user.id);
+    const questions = useSelector((state) => state.allQuestions);
 
     const dispatch = useDispatch();
 
@@ -48,6 +50,8 @@ const EditQuestionForm = ({ questionId }) => {
         if (question) {
             reset();
         }
+
+        await dispatch(thunkGetAllQuestions())
     };
 
     const reset = () => {
@@ -58,6 +62,8 @@ const EditQuestionForm = ({ questionId }) => {
         setHasSubmitted(false);
     };
 
+    //similar to allQuestions component:
+    //maybe have another showEditForm that gets set to true if question id === question id?
     return (
         <div>
             <h2>Want to make some changes to your question?</h2>
