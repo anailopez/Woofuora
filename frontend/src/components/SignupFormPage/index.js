@@ -12,6 +12,8 @@ function SignupFormPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [icon, setIcon] = useState('');
+    const [bio, setBio] = useState('');
     const [errors, setErrors] = useState([]);
 
     if (sessionUser) return <Redirect to="/" />;
@@ -20,7 +22,7 @@ function SignupFormPage() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(sessionActions.signup({ email, username, password }))
+            return dispatch(sessionActions.signup({ email, username, password, icon, bio }))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);
@@ -80,6 +82,20 @@ function SignupFormPage() {
                         required
                     />
                 </label>
+                <label>Set Your icon! (optional)</label>
+                <input
+                    type="text"
+                    onChange={(e) => setIcon(e.target.value)}
+                    value={icon}
+                />
+                <label>Bio (optional)</label>
+                <textarea
+                    onChange={(e) => setBio(e.target.value)}
+                    value={bio}
+                    name='bio'
+                    placeholder='Bio'
+                    rows='10'
+                />
                 <button type="submit">Sign Up</button>
             </form>
         </div>

@@ -9,7 +9,11 @@ const { Question } = require('../../db/models');
 
 //get all questions
 router.get('/', asyncHandler(async (req, res) => {
-    const questions = await Question.findAll({include: 'User'});
+    const questions = await Question.findAll({
+        include: 'User',
+        order: [['updatedAt', 'DESC']]
+    });
+    // console.log('***query results:', questions);
     return res.json(questions);
 }))
 
@@ -26,6 +30,17 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     if (questionId) {
         await Question.destroy({ where: { id: questionId } });
         return res.json(questionId);
+    }
+}));
+
+//edit a question
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+    const questionId = req.params.id;
+    const question = await Question.findOne({ where: { id: questionId } });
+
+    if (question) {
+        const updatedQuestion = await question.update(req.body);
+        return res.json(updatedQuestion);
     }
 }));
 

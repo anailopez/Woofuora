@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_QUESTIONS = 'question/getAllQuestions';
 const ADD_QUESTION = 'question/addQuestion';
 const DELETE_QUESTION = 'question/deleteQuestion';
+const UPDATE_QUESTION = 'question/updateQuestion';
 
 
 //regular action creator
@@ -26,6 +27,14 @@ export const actionDeleteQuestion = (questionId) => {
         questionId
     }
 }
+
+export const actionUpdateQuestion = (question) => {
+    return {
+        type: UPDATE_QUESTION,
+        question
+    }
+}
+
 
 //thunk action creator
 export const thunkGetAllQuestions = () => async (dispatch) => {
@@ -78,8 +87,33 @@ export const thunkDeleteQuestion = (questionId) => async (dispatch) => {
     }
 }
 
+export const thunkUpdateQuestion = (questionData) => async (dispatch) => {
+    const response = await csrfFetch(`/api/questions/${questionData.questionId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(questionData)
+    });
+
+    if (response.ok) {
+        const question = await response.json();
+        dispatch(actionUpdateQuestion(question));
+        return question;
+    } else {
+        return await response.json();
+    }
+}
+
+
 //initial state
-const initialState = {};
+const initialState = { orderedQuestions: [] };
+
+const sortList = (list) => {
+    return list.sort((questionA, questionB) => {
+        return questionB.updatedAt - questionA.updatedAt
+    });
+};
 
 //reducer
 const questionsReducer = (state = initialState, action) => {
@@ -89,17 +123,41 @@ const questionsReducer = (state = initialState, action) => {
             action.questions.forEach(question => {
                 allQState[question.id] = question
             });
-            return allQState;
+            return {
+                ...allQState,
+                orderedQuestions: sortList(action.questions)
+            };
 
         case ADD_QUESTION:
             const addQState = { ...state };
             addQState[action.question.id] = action.question;
-            return addQState;
+            const list = [...addQState.orderedQuestions];
+            list.push(action.question);
+            return {
+                ...addQState,
+                orderedQuestions: sortList(list)
+            };
 
         case DELETE_QUESTION:
             const deleteQState = { ...state };
             delete deleteQState[action.questionId];
-            return deleteQState;
+            const updatedList = deleteQState.orderedQuestions.filter(question => question.id !== action.questionId);
+            return {
+                ...deleteQState,
+                orderedQuestions: sortList(updatedList)
+            }
+
+        case UPDATE_QUESTION:
+            const updateQState = { ...state };
+            const index = updateQState.orderedQuestions.findIndex(
+                (question) => question.id === action.question.id);
+            const newList = [...updateQState.orderedQuestions];
+            newList[index] = action.question;
+            return {
+                ...state,
+                [action.question.id]: action.question,
+                orderedQuestions: sortList(newList)
+            };
 
         default:
             return state;
