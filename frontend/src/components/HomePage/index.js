@@ -23,7 +23,7 @@ const HomePage = () => {
                         {showPostForm && (
                             <div className='post-question-form'>
                                 <h2>What's your question?</h2>
-                                <CreateQuestionForm />
+                                <CreateQuestionForm showPostForm={showPostForm} setShowPostForm={setShowPostForm} />
                                 <button onClick={() => setShowPostForm(false)}>Cancel question</button>
                             </div>
                         )}
