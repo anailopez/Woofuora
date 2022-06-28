@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkDeleteQuestion } from '../../store/questions';
 import EditQuestionForm from '../EditQuestionForm';
+import AllAnswers from '../AllAnswers';
 import './AllQuestions.css';
 
 const AllQuestions = () => {
@@ -46,6 +47,9 @@ const AllQuestions = () => {
                                 <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>Delete</button>
                             </div>
                         )}
+                    </div>
+                    <div>
+                        <AllAnswers questionId={question.id}/>
                     </div>
                 </div>
             ))}
