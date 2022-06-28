@@ -141,7 +141,7 @@ const questionsReducer = (state = initialState, action) => {
         case DELETE_QUESTION:
             const deleteQState = { ...state };
             delete deleteQState[action.questionId];
-            const updatedList = deleteQState.orderedQuestions.filter(question => question.id != action.questionId);
+            const updatedList = deleteQState.orderedQuestions.filter(question => question.id !== action.questionId);
             return {
                 ...deleteQState,
                 orderedQuestions: sortList(updatedList)

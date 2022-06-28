@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkAddQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
+import './CreateQuestion.css';
 
 const CreateQuestionForm = () => {
     const [title, setTitle] = useState('');
@@ -62,7 +63,6 @@ const CreateQuestionForm = () => {
 
     return (
         <div>
-            <h1>Post a new question!</h1>
             <ul>
                 {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
                     <li key={error}>{error}</li>
@@ -92,8 +92,9 @@ const CreateQuestionForm = () => {
                     value={image}
                     placeholder='Image URL'
                     name='image'
+                    className='image-input'
                 />
-                <button type='submit'>Post your question</button>
+                <button className='post-button' type='submit'>Post your question!</button>
             </form>
         </div>
     )
