@@ -9,7 +9,7 @@ const AllQuestions = () => {
     const [buttonId, setButtonId] = useState(null);
     const dispatch = useDispatch();
 
-    const questionsArr = useSelector((state) => Object.values(state.allQuestions));
+    const questionsArr = useSelector(state => state.allQuestions.orderedQuestions);
     const userId = useSelector(state => state.session.user.id);
 
     useEffect(() => {

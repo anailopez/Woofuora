@@ -9,8 +9,11 @@ const { Question } = require('../../db/models');
 
 //get all questions
 router.get('/', asyncHandler(async (req, res) => {
-    const questions = await Question.findAll({ include: 'User', order: [['updatedAt', 'DESC']] });
-    console.log('***query results:', questions);
+    const questions = await Question.findAll({
+        include: 'User',
+        order: [['updatedAt', 'DESC']]
+    });
+    // console.log('***query results:', questions);
     return res.json(questions);
 }))
 
@@ -37,7 +40,6 @@ router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
 
     if (question) {
         const updatedQuestion = await question.update(req.body);
-        console.log('from backend', updatedQuestion)
         return res.json(updatedQuestion);
     }
 }));
