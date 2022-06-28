@@ -4,7 +4,7 @@ import { thunkAddQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
 import './CreateQuestion.css';
 
-const CreateQuestionForm = () => {
+const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
@@ -59,12 +59,13 @@ const CreateQuestionForm = () => {
         setImage('');
         setValidationErrors([]);
         setHasSubmitted(false);
+        setShowPostForm(false);
     };
 
     return (
         <div>
             <ul>
-                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                {hasSubmitted && showPostForm && validationErrors.length > 0 && validationErrors.map(error => (
                     <li key={error}>{error}</li>
                 ))}
             </ul>
