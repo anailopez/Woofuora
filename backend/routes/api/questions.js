@@ -10,8 +10,7 @@ const { Question } = require('../../db/models');
 //get all questions
 router.get('/', asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
-        include: 'User',
-        order: [['updatedAt', 'DESC']]
+        include: 'User'
     });
     // console.log('***query results:', questions);
     return res.json(questions);
