@@ -10,10 +10,15 @@ router.get('/', asyncHandler(async (req, res) => {
     const answers = await Answer.findAll({
         include: ['User', 'Question']
     });
-    console.log('***query results', answers);
     return res.json(answers);
 }))
 
+
+//submit new answer
+router.post('/', asyncHandler(async (req, res) => {
+    const answer = await Answer.create(req.body);
+    return res.json(answer);
+}))
 
 
 module.exports = router;

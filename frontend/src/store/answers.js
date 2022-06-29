@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_ANSWERS = 'answer/getAllAnswers';
+const ADD_ANSWER = 'answer/addAnswer';
 
 
 //regular action creator
@@ -11,6 +12,12 @@ export const actionGetAllAnswers = (answers) => {
     }
 }
 
+export const actionAddAnswer = (answer) => {
+    return {
+        type: ADD_ANSWER,
+        answer
+    }
+}
 
 //thunk action creator
 export const thunkGetAllAnswers = () => async (dispatch) => {
@@ -25,6 +32,29 @@ export const thunkGetAllAnswers = () => async (dispatch) => {
     }
 }
 
+export const thunkAddAnswer = (answer) => async (dispatch) => {
+    const { userId, questionId, body, image } = answer;
+    const response = await csrfFetch('/api/answers', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId,
+            questionId,
+            body,
+            image
+        })
+    });
+
+    if (response.ok) {
+        const newAnswer = await response.json();
+        dispatch(actionAddAnswer(newAnswer));
+        return newAnswer;
+    } else {
+        return await response.json();
+    }
+}
 
 //initial state
 const initialState = { orderedAnswers: [] };
@@ -47,7 +77,17 @@ const answersReducer = (state = initialState, action) => {
                 ...allAState,
                 orderedAnswers: sortList(action.answers)
             };
-            
+
+        case ADD_ANSWER:
+            const addAState = { ...state };
+            addAState[action.answer.id] = action.answer;
+            const list = [...addAState.orderedAnswers];
+            list.push(action.answer);
+            return {
+                ...addAState,
+                orderedAnswers: sortList(list)
+            };
+
         default:
             return state;
     }

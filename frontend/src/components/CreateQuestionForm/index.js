@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkAddQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
+import { thunkGetAllAnswers } from '../../store/answers';
 import './CreateQuestion.css';
 
 const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
@@ -11,7 +12,7 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    const ownerId = useSelector(state => state.session.user.id)
+    const ownerId = useSelector(state => state.session.user.id);
 
     const dispatch = useDispatch();
 
@@ -21,9 +22,12 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
         if (!title.length) {
             errors.push('Please make a title for your question!')
         }
+        if (image.length > 0 && !image.match(/\.(jpg|jpeg|png|gif)$/)) {
+            errors.push('Please enter a valid image URL!');
+        }
 
         setValidationErrors(errors);
-    }, [title]);
+    }, [title, image]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -44,7 +48,6 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
         };
 
         const question = await dispatch(thunkAddQuestion(newQuestion));
-        console.log('after dispatch, from component', question)
 
         if (question) {
             reset();

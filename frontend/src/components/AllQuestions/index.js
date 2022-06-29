@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkDeleteQuestion } from '../../store/questions';
+import { thunkGetAllAnswers } from '../../store/answers';
 import EditQuestionForm from '../EditQuestionForm';
 import AllAnswers from '../AllAnswers';
 import './AllQuestions.css';
@@ -9,13 +10,15 @@ import './AllQuestions.css';
 const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [buttonId, setButtonId] = useState(null);
+
     const dispatch = useDispatch();
 
-    const questionsArr = useSelector(state => state.allQuestions.orderedQuestions);
+    const questionsArr = useSelector(state => state.questionDetail.questionsReducer.orderedQuestions);
     const userId = useSelector(state => state.session.user.id);
 
     useEffect(() => {
         dispatch(thunkGetAllQuestions());
+        dispatch(thunkGetAllAnswers());
     }, [dispatch]);
 
 
@@ -41,7 +44,7 @@ const AllQuestions = () => {
                                 <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
                             </div>
                         )}
-                        {question.ownerId === userId && !showEditForm && (
+                        {question.User && question.ownerId === userId && !showEditForm && (
                             <div className='edit-delete-buttons'>
                                 <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>Edit</button>
                                 <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>Delete</button>
@@ -49,7 +52,7 @@ const AllQuestions = () => {
                         )}
                     </div>
                     <div>
-                        <AllAnswers questionId={question.id}/>
+                        <AllAnswers question={question} />
                     </div>
                 </div>
             ))}
