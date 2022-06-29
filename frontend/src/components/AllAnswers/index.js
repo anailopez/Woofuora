@@ -5,7 +5,7 @@ import { thunkDeleteAnswer } from '../../store/answers';
 import CreateAnswerForm from '../CreateAnswerForm';
 import './AllAnswers.css';
 
-const AllAnswers = ({ question }) => {
+const AllAnswers = ({ question, showAnswers, setShowAnswers }) => {
     const answersArr = useSelector(state => state.questionDetail.answers.orderedAnswers);
     const userId = useSelector(state => state.session.user.id);
 
@@ -18,34 +18,40 @@ const AllAnswers = ({ question }) => {
 
     return (
         <div>
-            {question.ownerId !== userId && (
-                <CreateAnswerForm question={question} />
-            )}
-            {answersArr && answersArr.map(answer => (
-                <div key={answer.id}>
-                    {answer.Question && question.id === answer.Question.id && (
-                        <div>
-                            {answer.User && (
-                                <div className='answer-user'>
-                                    <img src={answer.User.icon} alt="icon" />
-                                    <h4>{answer.User.username} answered:</h4>
+            {showAnswers && (
+                <>
+                    <>
+                        <button onClick={() => setShowAnswers(false)}>Hide answers</button>
+                    </>
+                    {question.ownerId !== userId && (
+                        <CreateAnswerForm question={question} />
+                    )}
+                    {answersArr && answersArr.map(answer => (
+                        <div key={answer.id}>
+                            {answer.Question && question.id === answer.Question.id && (
+                                <div>
+                                    {answer.User && (
+                                        <div className='answer-user'>
+                                            <img src={answer.User.icon} alt="icon" />
+                                            <h4>{answer.User.username} answered:</h4>
+                                        </div>
+                                    )}
+                                    <div className='answer-content'>
+                                        <p>{answer.body}</p>
+                                        {answer.image && (
+                                            <img src={answer.image} />
+                                        )}
+
+                                    </div>
+                                    {question.ownerId !== userId && (
+                                        <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()) }}>Delete your answer</button>
+                                    )}
                                 </div>
                             )}
-                            <div className='answer-content'>
-                                <p>{answer.body}</p>
-                                {answer.image && (
-                                    <img src={answer.image} />
-                                )}
-
-                            </div>
-                            {question.ownerId !== userId && (
-                                <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()) }}>Delete your answer</button>
-                            )}
                         </div>
-                    )}
-                </div>
-            ))
-            }
+                    ))}
+                </>
+            )}
         </div >
     )
 }
