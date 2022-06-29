@@ -1,0 +1,31 @@
+.answer-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 5%;
+    padding-top: 30px;
+    background-color: #FEF5ED;
+}
+
+.answer-user img {
+    border-radius: 50%;
+    max-width: 10%;
+    max-height: 70px;
+    padding-left: 20px;
+}
+
+.user-display h4 {
+    padding-left: 10px;
+    font-size: 25px;
+}
+
+.answer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    background-color: #FEF5ED;
+}
