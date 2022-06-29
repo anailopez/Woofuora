@@ -9,6 +9,8 @@ const AllAnswers = ({ question, showAnswers, setShowAnswers }) => {
     const answersArr = useSelector(state => state.questionDetail.answers.orderedAnswers);
     const userId = useSelector(state => state.session.user.id);
 
+    const answers = answersArr.find(answer => answer.questionId === question.id);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -23,9 +25,20 @@ const AllAnswers = ({ question, showAnswers, setShowAnswers }) => {
                     <>
                         <button onClick={() => setShowAnswers(false)}>Hide answers</button>
                     </>
-                    {question.ownerId !== userId && (
-                        <CreateAnswerForm question={question} />
-                    )}
+                    <>
+                        {!answers && (
+                            <>
+                                <p>No answers yet!</p>
+                                {question.ownerId !== userId && (
+                                    <p>Be the first to answer this question!</p>
+                                )}
+                            </>
+                        )}
+
+                        {question.ownerId !== userId && (
+                            <CreateAnswerForm question={question} />
+                        )}
+                    </>
                     {answersArr && answersArr.map(answer => (
                         <div key={answer.id}>
                             {answer.Question && question.id === answer.Question.id && (

@@ -54,7 +54,7 @@ const AllQuestions = () => {
                     </div>
                     <div>
                         {!showAnswers && (
-                            <button onClick={() => setShowAnswers(true)}>See answers</button>
+                            <button className='see-answers-button' onClick={() => setShowAnswers(true)}>See answers</button>
                         )}
                         {showAnswers && (
                             <AllAnswers question={question} showAnswers={showAnswers} setShowAnswers={setShowAnswers} />
