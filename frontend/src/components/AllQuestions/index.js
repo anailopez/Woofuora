@@ -10,6 +10,7 @@ import './AllQuestions.css';
 const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [buttonId, setButtonId] = useState(null);
+    const [showAnswers, setShowAnswers] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -52,7 +53,12 @@ const AllQuestions = () => {
                         )}
                     </div>
                     <div>
-                        <AllAnswers question={question} />
+                        {!showAnswers && (
+                            <button onClick={() => setShowAnswers(true)}>See answers</button>
+                        )}
+                        {showAnswers && (
+                            <AllAnswers question={question} showAnswers={showAnswers} setShowAnswers={setShowAnswers} />
+                        )}
                     </div>
                 </div>
             ))}
