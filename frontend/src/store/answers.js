@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_ANSWERS = 'answer/getAllAnswers';
 const ADD_ANSWER = 'answer/addAnswer';
+const DELETE_ANSWER = 'answer/deleteAnswer';
 
 
 //regular action creator
@@ -18,6 +19,14 @@ export const actionAddAnswer = (answer) => {
         answer
     }
 }
+
+export const actionDeleteAnswer = (answerId) => {
+    return {
+        type: DELETE_ANSWER,
+        answerId
+    }
+}
+
 
 //thunk action creator
 export const thunkGetAllAnswers = () => async (dispatch) => {
@@ -51,6 +60,20 @@ export const thunkAddAnswer = (answer) => async (dispatch) => {
         const newAnswer = await response.json();
         dispatch(actionAddAnswer(newAnswer));
         return newAnswer;
+    } else {
+        return await response.json();
+    }
+}
+
+export const thunkDeleteAnswer = (answerId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/answers/${answerId}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok) {
+        const id = await response.json();
+        dispatch(actionDeleteAnswer(id));
+        return id;
     } else {
         return await response.json();
     }

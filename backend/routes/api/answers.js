@@ -8,7 +8,8 @@ const { Answer } = require('../../db/models');
 //get all answers
 router.get('/', asyncHandler(async (req, res) => {
     const answers = await Answer.findAll({
-        include: ['User', 'Question']
+        include: ['User', 'Question'],
+        order: [['createdAt', 'DESC']]
     });
     return res.json(answers);
 }))
