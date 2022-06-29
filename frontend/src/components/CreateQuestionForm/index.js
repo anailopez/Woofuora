@@ -27,7 +27,7 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
         }
 
         setValidationErrors(errors);
-    }, [title, image]);
+    }, [title, image, hasSubmitted]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

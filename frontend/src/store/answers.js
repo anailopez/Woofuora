@@ -111,6 +111,15 @@ const answersReducer = (state = initialState, action) => {
                 orderedAnswers: sortList(list)
             };
 
+        case DELETE_ANSWER:
+            const deleteAState = { ...state };
+            delete deleteAState[action.answerId];
+            const updatedList = deleteAState.orderedAnswers.filter(answer => answer.id !== action.answerId);
+            return {
+                ...deleteAState,
+                orderedAnswers: sortList(updatedList)
+            }
+
         default:
             return state;
     }

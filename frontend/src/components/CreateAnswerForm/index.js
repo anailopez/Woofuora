@@ -9,7 +9,7 @@ const CreateAnswerForm = ({ question }) => {
     const [image, setImage] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    
+
     const userId = useSelector(state => state.session.user.id);
 
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const CreateAnswerForm = ({ question }) => {
         }
 
         setValidationErrors(errors);
-    }, [body, image]);
+    }, [body, image, hasSubmitted]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,7 +52,7 @@ const CreateAnswerForm = ({ question }) => {
         }
 
         await dispatch(thunkGetAllAnswers());
-        await dispatch(thunkGetAllQuestions());
+        // await dispatch(thunkGetAllQuestions());
     };
 
     const reset = () => {
@@ -70,27 +70,25 @@ const CreateAnswerForm = ({ question }) => {
                     <li key={error}>{error}</li>
                 ))}
             </ul>
-            <>
-                <form onSubmit={handleSubmit}>
-                    <label>Your Answer:</label>
-                    <textarea
-                        onChange={(e) => setBody(e.target.value)}
-                        value={body}
-                        name='body'
-                        rows='10'
-                    />
-                    <label>Image</label>
-                    <input
-                        type='text'
-                        onChange={(e) => setImage(e.target.value)}
-                        value={image}
-                        placeholder='Image URL'
-                        name='image'
-                        className='image-input'
-                    />
-                    <button className='post-button' type="submit">Submit your answer!</button>
-                </form>
-            </>
+            <form onSubmit={handleSubmit}>
+                <label>Your Answer:</label>
+                <textarea
+                    onChange={(e) => setBody(e.target.value)}
+                    value={body}
+                    name='body'
+                    rows='10'
+                />
+                <label>Image</label>
+                <input
+                    type='text'
+                    onChange={(e) => setImage(e.target.value)}
+                    value={image}
+                    placeholder='Image URL'
+                    name='image'
+                    className='image-input'
+                />
+                <button className='post-button' type="submit">Submit your answer!</button>
+            </form>
         </div>
     )
 }
