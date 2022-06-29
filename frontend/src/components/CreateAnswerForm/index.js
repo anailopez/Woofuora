@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkAddAnswer } from '../../store/answers';
 import { thunkGetAllAnswers } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
+import './CreateAnswerForm.css';
 
 const CreateAnswerForm = ({ question }) => {
     const [body, setBody] = useState('');
