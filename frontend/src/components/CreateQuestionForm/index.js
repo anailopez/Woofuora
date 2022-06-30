@@ -35,6 +35,7 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
         setHasSubmitted(true);
 
         if (validationErrors.length > 0) {
+            await dispatch(thunkGetAllQuestions());
             return alert("Oops! Please fix errors with your question!");
         }
 

@@ -34,6 +34,7 @@ const CreateAnswerForm = ({ question }) => {
         setHasSubmitted(true);
 
         if (validationErrors.length > 0) {
+            await dispatch(thunkGetAllAnswers());
             return alert("Oops! Please fix errors with your answer!");
         }
 
@@ -53,7 +54,6 @@ const CreateAnswerForm = ({ question }) => {
         }
 
         await dispatch(thunkGetAllAnswers());
-        // await dispatch(thunkGetAllQuestions());
     };
 
     const reset = () => {
