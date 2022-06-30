@@ -10,7 +10,6 @@ import './AllQuestions.css';
 const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [buttonId, setButtonId] = useState(null);
-    const [showAnswers, setShowAnswers] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -24,12 +23,14 @@ const AllQuestions = () => {
 
 
     return (
-        <div>
+        <div className='allQuestions'>
             {questionsArr && questionsArr.map(question => (
                 <div key={question.id} className='allquestions-content' >
                     {question.User && (
                         <div className='user-display'>
-                            <img src={question.User.icon} alt='icon' />
+                            {question.User.icon && (
+                                <img src={question.User.icon} alt='icon' />
+                            )}
                             <h3>{question.User.username} asks:</h3>
                         </div>
                     )}
@@ -40,25 +41,26 @@ const AllQuestions = () => {
                             <img src={question.image} />
                         )}
                         {question.User && showEditForm && question.User.id === userId && buttonId === question.id && (
-                            <div>
+                            <div className='edit-question-form-area'>
                                 <EditQuestionForm questionId={question.id} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
                                 <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
                             </div>
                         )}
                         {question.User && question.ownerId === userId && !showEditForm && (
                             <div className='edit-delete-buttons'>
-                                <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>Edit</button>
-                                <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>Delete</button>
+                                <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>
+                                    <i className="fa-solid fa-pen" />
+                                    Edit Question
+                                </button>
+                                <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>
+                                    <i className="fa-solid fa-trash-can" />
+                                    Delete Question
+                                </button>
                             </div>
                         )}
                     </div>
-                    <div>
-                        {!showAnswers && (
-                            <button onClick={() => setShowAnswers(true)}>See answers</button>
-                        )}
-                        {showAnswers && (
-                            <AllAnswers question={question} showAnswers={showAnswers} setShowAnswers={setShowAnswers} />
-                        )}
+                    <div className='allanswers-content'>
+                        <AllAnswers question={question} />
                     </div>
                 </div>
             ))}

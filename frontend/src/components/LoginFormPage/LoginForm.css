@@ -1,43 +1,74 @@
-:root {
-    background-color: #D3E4CD;
+body {
+    background-image: url(https://thumbs.dreamstime.com/b/cute-dogs-action-wallpaper-design-dog-breeds-illustration-background-153247720.jpg);
+}
+
+.login-form-page {
+    display: flex;
+    flex-direction: column;
+    margin: 200px auto;
+
 }
 
 .login-form-box {
     border: 1px solid black;
     background-color: #FEF5ED;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 200px auto;
-    max-width: 75%;
-    max-height: 75%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    margin-left: 20%;
+    margin-right: 20%;
+    min-width: 700px;
+    max-width: 900px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px
+.logo {
+    display: inline-flex;
 }
+
+.login-signup {
+    display: inline-flex;
+    flex-direction: row;
+}
+
 
 .signup-here {
     margin-top: 40px;
+    padding-right: 40px;
+    border-right: 1px solid black;
 }
+
+.demo-user {
+    padding-top: 50px;
+}
+
+.login-signup form {
+    padding-left: 90px;
+    box-sizing: border-box;
+    width: 200px;
+    /* padding: 20px; */
+}
+
 
 .login-inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px
+    padding-right: 20px;
+
 }
 
 button {
     border-radius: 10px;
-    background-color: #BDC7C9;
     margin-right: 20px;
 }
 
 .title {
     padding-bottom: 20px;
+}
+
+.navbar {
+    display: hidden;
 }
