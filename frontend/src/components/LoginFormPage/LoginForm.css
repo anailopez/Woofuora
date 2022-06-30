@@ -30,7 +30,6 @@ body {
 .login-signup {
     display: inline-flex;
     flex-direction: row;
-    /* justify-content: space-between; */
 }
 
 
@@ -46,6 +45,9 @@ body {
 
 .login-signup form {
     padding-left: 90px;
+    box-sizing: border-box;
+    width: 200px;
+    /* padding: 20px; */
 }
 
 

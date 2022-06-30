@@ -3,11 +3,15 @@
     background-color: #FEF5ED;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    /* justify-content: space-evenly; */
 }
 
 .links{
     list-style: none;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .links li{

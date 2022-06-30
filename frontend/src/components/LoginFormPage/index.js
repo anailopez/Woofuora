@@ -28,6 +28,11 @@ function LoginFormPage() {
             });
     }
 
+    const demoLogin = async (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.login({ credential: "Goldie", password: 'password' }))
+    }
+
     return (
         <div className='login-form-page'>
             <div className='login-form-box'>
@@ -42,7 +47,7 @@ function LoginFormPage() {
                         </Link>
                         <div className='demo-user'>
                             <p>Or</p>
-                            <button>Demo user login</button>
+                            <button onClick={demoLogin}>Demo user login</button>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit}>
