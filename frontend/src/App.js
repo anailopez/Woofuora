@@ -16,24 +16,24 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="app">
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
             <HomePage isLoaded={isLoaded} />
           </Route>
-          <Route path="/login">
+          <Route exact path="/login">
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/user'>
+          <Route exact path='/user'>
             <UserProfile />
           </Route>
         </Switch>
       )}
-    </>
+    </div>
   );
 }
 
