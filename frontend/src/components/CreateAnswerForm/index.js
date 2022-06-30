@@ -77,7 +77,7 @@ const CreateAnswerForm = ({ question }) => {
                     onChange={(e) => setBody(e.target.value)}
                     value={body}
                     name='body'
-                    rows='10'
+                    rows='2'
                 />
                 <label>Image</label>
                 <input

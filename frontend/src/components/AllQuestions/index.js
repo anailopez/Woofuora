@@ -28,7 +28,9 @@ const AllQuestions = () => {
                 <div key={question.id} className='allquestions-content' >
                     {question.User && (
                         <div className='user-display'>
-                            <img src={question.User.icon} alt='icon' />
+                            {question.User.icon && (
+                                <img src={question.User.icon} alt='icon' />
+                            )}
                             <h3>{question.User.username} asks:</h3>
                         </div>
                     )}
@@ -39,7 +41,7 @@ const AllQuestions = () => {
                             <img src={question.image} />
                         )}
                         {question.User && showEditForm && question.User.id === userId && buttonId === question.id && (
-                            <div>
+                            <div className='edit-question-form-area'>
                                 <EditQuestionForm questionId={question.id} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
                                 <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
                             </div>
@@ -47,17 +49,17 @@ const AllQuestions = () => {
                         {question.User && question.ownerId === userId && !showEditForm && (
                             <div className='edit-delete-buttons'>
                                 <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>
-                                    <i class="fa-solid fa-pen" />
+                                    <i className="fa-solid fa-pen" />
                                     Edit Question
                                 </button>
                                 <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>
-                                    <i class="fa-solid fa-trash-can" />
+                                    <i className="fa-solid fa-trash-can" />
                                     Delete Question
                                 </button>
                             </div>
                         )}
                     </div>
-                    <div>
+                    <div className='allanswers-content'>
                         <AllAnswers question={question} />
                     </div>
                 </div>

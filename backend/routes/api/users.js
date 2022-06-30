@@ -4,6 +4,7 @@ const { check } = require('express-validator');
 const { setTokenCookie } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
+const { response } = require('express');
 
 const router = express.Router();
 
@@ -43,6 +44,12 @@ router.post(
     })
 );
 
-//add get user route
+
+//get all users
+router.get('/', async (req, res) => {
+    const users = await User.findAll();
+    return res.json(users);
+})
+
 
 module.exports = router;

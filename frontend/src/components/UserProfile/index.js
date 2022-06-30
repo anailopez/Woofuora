@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkGetAllAnswers } from '../../store/answers';
+import Navigation from '../Navigation';
+import '../Navigation/Navigation.css';
 
 const UserProfile = () => {
     const userId = useSelector(state => state.session.user.id);
@@ -18,20 +20,21 @@ const UserProfile = () => {
 
     return (
         <div>
-            {answers && answers.map(answer => (
-                <>
+            <Navigation />
+            {/* {answers && answers.map(answer => (
+                <div key={answer.id}>
                     {answer.User && answer.User.id === userId && (
-                        <div key={answer.id}className='answers'>
+                        <div className='answers'>
                             <p>{answer.body}</p>
                         </div>
                     )}
                     {answer.Question && answer.Question.ownerId === userId && (
-                        <div key={answer.Question}className='questions'>
+                        <div className='questions'>
                             <h3>{answer.Question.title}</h3>
                         </div>
                     )}
-                </>
-            ))}
+                </div>
+            ))} */}
         </div>
     )
 }

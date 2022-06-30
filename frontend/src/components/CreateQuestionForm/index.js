@@ -87,7 +87,7 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
                     value={description}
                     name='description'
                     placeholder='Description'
-                    rows='10'
+                    rows='5'
                 />
                 <label>Image</label>
                 <input

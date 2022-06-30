@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -15,11 +15,27 @@ function SignupFormPage() {
     const [icon, setIcon] = useState('');
     const [bio, setBio] = useState('');
     const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([]);
+
+    useEffect(() => {
+        const errors = [];
+
+        if (icon.length > 0 && !icon.match(/\.(jpg|jpeg|png|gif)$/)) {
+            errors.push('Please enter a valid image URL!');
+        }
+
+        setValidationErrors(errors);
+    }, [icon]);
 
     if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(validationErrors.length > 0) {
+            return alert("Oops! Looks like there was an error with your submission!")
+        }
+
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({ email, username, password, icon, bio }))
@@ -31,6 +47,7 @@ function SignupFormPage() {
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
+
     return (
         <div className="signup-form-box">
             <div className='signup-here'>
@@ -41,7 +58,7 @@ function SignupFormPage() {
             </div>
             <form onSubmit={handleSubmit}>
                 <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    {validationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div className='title'>
                     <label>Sign Up</label>
@@ -87,6 +104,7 @@ function SignupFormPage() {
                     type="text"
                     onChange={(e) => setIcon(e.target.value)}
                     value={icon}
+                    placeholder="Icon URL"
                 />
                 <label>Bio (optional)</label>
                 <textarea
@@ -94,7 +112,7 @@ function SignupFormPage() {
                     value={bio}
                     name='bio'
                     placeholder='Bio'
-                    rows='10'
+                    rows='2'
                 />
                 <button type="submit">Sign Up</button>
             </form>

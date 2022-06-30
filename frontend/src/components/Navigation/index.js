@@ -26,9 +26,9 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className='navbar'>
+            <NavLink exact to="/"><img className="navbar-icon" src={`${headerIcon}`} /></NavLink>
             <ul className='links'>
                 <li>
-                    <NavLink exact to="/"><img src={`${headerIcon}`} /></NavLink>
                     {isLoaded && sessionLinks}
 
                 </li>

@@ -8,6 +8,7 @@ import './AllAnswers.css';
 const AllAnswers = ({ question }) => {
     const answersArr = useSelector(state => state.questionDetail.answers.orderedAnswers);
     const userId = useSelector(state => state.session.user.id);
+    const answersObj = useSelector(state => state.questionDetail.answers);
 
     const answers = answersArr.find(answer => answer.questionId === question.id);
 
@@ -34,7 +35,9 @@ const AllAnswers = ({ question }) => {
                         <div>
                             {answer.User && (
                                 <div className='answer-user'>
-                                    <img src={answer.User.icon} alt="icon" />
+                                    {answer.User.icon && (
+                                        <img src={answer.User.icon} alt="icon" />
+                                    )}
                                     <h4>{answer.User.username} answered:</h4>
                                 </div>
                             )}
