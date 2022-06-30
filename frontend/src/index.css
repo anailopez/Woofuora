@@ -1,1 +1,12 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    background-color: #D3E4CD;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    border: none;
+    background-color:paleturquoise
+}

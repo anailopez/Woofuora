@@ -1,3 +1,11 @@
+
+.questions-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .post-question-button {
     display: flex;
     flex-direction: row;

@@ -10,7 +10,6 @@ import './AllQuestions.css';
 const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [buttonId, setButtonId] = useState(null);
-    const [showAnswers, setShowAnswers] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ const AllQuestions = () => {
 
 
     return (
-        <div>
+        <div className='allQuestions'>
             {questionsArr && questionsArr.map(question => (
                 <div key={question.id} className='allquestions-content' >
                     {question.User && (
@@ -47,18 +46,19 @@ const AllQuestions = () => {
                         )}
                         {question.User && question.ownerId === userId && !showEditForm && (
                             <div className='edit-delete-buttons'>
-                                <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>Edit</button>
-                                <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>Delete</button>
+                                <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>
+                                    <i class="fa-solid fa-pen" />
+                                    Edit Question
+                                </button>
+                                <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>
+                                    <i class="fa-solid fa-trash-can" />
+                                    Delete Question
+                                </button>
                             </div>
                         )}
                     </div>
                     <div>
-                        {!showAnswers && (
-                            <button className='see-answers-button' onClick={() => setShowAnswers(true)}>See answers</button>
-                        )}
-                        {showAnswers && (
-                            <AllAnswers question={question} showAnswers={showAnswers} setShowAnswers={setShowAnswers} />
-                        )}
+                        <AllAnswers question={question} />
                     </div>
                 </div>
             ))}
