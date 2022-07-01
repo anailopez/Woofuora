@@ -4,6 +4,18 @@ Woofoura is a website where dogs can ask questions, receive answers to their que
 
 View the live site here: https://woofoura.herokuapp.com/
 
+## Instructions on how to install Woofoura
+After cloning Woofoura into your desired directory:
+* run 'npm install' in both the backend and frontend directories to install all dependencies
+* In the backend directory, and create an '.env' file based off of the example provided in the '.env.example' file
+* To set up the database:
+> * In the backend directory, run 'npx dotenv sequelize db:create' to create the database
+> * In the backend directory, run 'npx dotenv sequelize db:migrate' and 'npx dotenv sequelize db:seed:all' to add all models and seeders into your database
+* To run the app in development mode: 
+> * In one terminal, cd into the backend directory and run 'npm start'
+> * In another terminal, cd into the frontend directory and run 'npm start'
+> * With both terminals running 'npm start', navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Woofoura!
+
 ## View Woofoura's
 * [Feature List](https://github.com/anailopez/Woofoura/wiki/Feature-List)
 * [Database Schema](https://github.com/anailopez/Woofoura/wiki/Database-Schema)
