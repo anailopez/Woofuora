@@ -26,7 +26,7 @@ Upon first navigating to Woofoura, a user will be directed to the '/login' page,
 ![login](https://user-images.githubusercontent.com/96565654/176940004-d88c52b7-6963-426d-8345-b046cc0dc2f3.png)
 
 
-##Signup Page
+## Signup Page
 On the '/signup' page, new users can fill out a form to create an account upon successful submission.
 
 ![signup](https://user-images.githubusercontent.com/96565654/176947205-012a4dc3-466a-40ce-9b18-053c17ece256.png)
