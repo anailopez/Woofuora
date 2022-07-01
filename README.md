@@ -16,7 +16,7 @@ After cloning Woofoura into your desired directory:
 > * In another terminal, cd into the frontend directory and run 'npm start'
 > * With both terminals running 'npm start', navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Woofoura!
 
-## View Woofoura's
+## View Woofoura's:
 * [Feature List](https://github.com/anailopez/Woofoura/wiki/Feature-List)
 * [Database Schema](https://github.com/anailopez/Woofoura/wiki/Database-Schema)
 * [Redux Store Shape](https://github.com/anailopez/Woofoura/wiki/Store-Shape)
