@@ -28,9 +28,9 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/user">
+          {/* <Route exact path="/user">
             <UserProfile />
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </div>

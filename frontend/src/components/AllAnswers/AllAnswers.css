@@ -1,3 +1,4 @@
+
 .answer-user {
     display: flex;
     flex-direction: row;
@@ -27,4 +28,13 @@
     padding-left: 30px;
     padding-right: 30px;
     background-color: #FEF5ED;
+}
+
+.answer-content img {
+    max-height: 200px;
+    max-width: 300px;
+}
+
+#delete-answer-bttn {
+    margin-bottom: 40px;
 }

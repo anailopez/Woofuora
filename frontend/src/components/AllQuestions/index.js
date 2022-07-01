@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllQuestions } from '../../store/questions';
-import { thunkDeleteQuestion } from '../../store/questions';
 import { thunkGetAllAnswers } from '../../store/answers';
+import { thunkDeleteQuestion } from '../../store/questions';
+import { thunkDeleteAnswer } from '../../store/answers';
 import EditQuestionForm from '../EditQuestionForm';
 import AllAnswers from '../AllAnswers';
 import './AllQuestions.css';
@@ -16,10 +17,26 @@ const AllQuestions = () => {
     const questionsArr = useSelector(state => state.questionDetail.questionsReducer.orderedQuestions);
     const userId = useSelector(state => state.session.user.id);
 
+    const answers = useSelector(state => Object.values(state.questionDetail.answers));
+    // console.log(answers);
+
     useEffect(() => {
+
         dispatch(thunkGetAllQuestions());
         dispatch(thunkGetAllAnswers());
     }, [dispatch]);
+
+
+    const handleDelete = (question) => {
+        const answer = answers.find(answer => answer.questionId === question.id);
+
+        if (answer) {
+            dispatch(thunkDeleteAnswer(answer.id));
+        }
+
+        dispatch(thunkDeleteQuestion(question.id));
+    }
+
 
 
     return (
@@ -52,7 +69,10 @@ const AllQuestions = () => {
                                     <i className="fa-solid fa-pen" />
                                     Edit Question
                                 </button>
-                                <button onClick={() => { dispatch(thunkDeleteQuestion(question.id)); dispatch(thunkGetAllQuestions()) }}>
+                                <button onClick={() => {
+                                    handleDelete(question); dispatch(thunkGetAllQuestions());
+                                    dispatch(thunkGetAllAnswers());
+                                }}>
                                     <i className="fa-solid fa-trash-can" />
                                     Delete Question
                                 </button>
