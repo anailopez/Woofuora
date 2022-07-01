@@ -87,6 +87,7 @@ function SignupFormPage() {
                     type="text"
                     onChange={(e) => setIcon(e.target.value)}
                     value={icon}
+                    placeholder="Icon URL"
                 />
                 <label>Bio (optional)</label>
                 <textarea

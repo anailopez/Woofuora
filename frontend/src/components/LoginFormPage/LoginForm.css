@@ -1,6 +1,6 @@
-body {
+/* body {
     background-image: url(https://thumbs.dreamstime.com/b/cute-dogs-action-wallpaper-design-dog-breeds-illustration-background-153247720.jpg);
-}
+} */
 
 .login-form-page {
     display: flex;
@@ -10,8 +10,7 @@ body {
 }
 
 .login-form-box {
-    border: 1px solid black;
-    background-color: #FEF5ED;
+    background-color: white;
     display: inline-flex;
     flex-direction: column;
     justify-content: center;

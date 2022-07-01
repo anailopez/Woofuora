@@ -1,5 +1,5 @@
 .navbar {
-    background-color: white;
+    /* background-color: white; */
     display: flex;
     flex-direction: row;
     /* max-height: 70px; */
@@ -10,7 +10,7 @@
     margin-top: -12px;
     margin-left: -10px;
     margin-right: -10px;
-    box-shadow: 2px -3px 22px 1px black;
+    box-shadow: 2px -3px 10px 1px gray;
 }
 
 .links {

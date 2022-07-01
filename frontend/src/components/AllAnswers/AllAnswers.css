@@ -1,4 +1,3 @@
-
 .answer-user {
     display: flex;
     flex-direction: row;
@@ -28,6 +27,7 @@
     padding-left: 30px;
     padding-right: 30px;
     background-color: #FEF5ED;
+    padding-bottom: 30px;
 }
 
 .answer-content img {
