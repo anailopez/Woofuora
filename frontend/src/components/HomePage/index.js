@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { thunkGetUsers } from '../../store/session';
+import Modal from 'react-modal';
 import AllQuestions from '../AllQuestions';
 import CreateQuestionForm from '../CreateQuestionForm';
 import Navigation from '../Navigation';
 import './HomePage.css';
+
 
 const HomePage = ({ isLoaded }) => {
     const user = useSelector(state => state.session.user);
     const questions = useSelector(state => state.allQuestions.orderedQuestions);
     const [showPostForm, setShowPostForm] = useState(false);
     const users = useSelector(state => state.session.users);
+    Modal.setAppElement('body');
 
     const dispatch = useDispatch();
 
@@ -19,28 +22,42 @@ const HomePage = ({ isLoaded }) => {
         dispatch(thunkGetUsers());
     }, [dispatch]);
 
+
+    function openQuestionModal() {
+        setShowPostForm(true)
+    }
+
+    function closeQuestionModal() {
+        setShowPostForm(false)
+    }
+
+    const questionFormStyle = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+    };
+
+
     return (
         <div className='homepage'>
             <Navigation isLoaded={isLoaded} />
             {user ? (
                 <div className='questions-content'>
-                    <div className='post-question-box'>
-                        {!showPostForm && (
-                            <>
-                                {/* <img src={}/> */}
-                                <input type="text" onClick={() => setShowPostForm(true)} placeholder="Post a new question!"></input>
-                            </>
-                        )}
-                    </div>
-                    <>
-                        {showPostForm && (
-                            <div className='post-question-form'>
+                    <div className='createQuestion-container'>
+                        <button onClick={openQuestionModal}> Post a new question! </button>
+                        <div className='post-question-form'>
+                            <Modal isOpen={showPostForm} style={questionFormStyle}>
                                 <h2>What's your question?</h2>
-                                <CreateQuestionForm showPostForm={showPostForm} setShowPostForm={setShowPostForm} />
-                                <button onClick={() => setShowPostForm(false)}>Cancel question</button>
-                            </div>
-                        )}
-                    </>
+                                <CreateQuestionForm showPostForm={showPostForm} closeQuestionModal={closeQuestionModal} />
+                                <button onClick={closeQuestionModal}>Cancel question</button>
+                            </Modal >
+                        </div>
+                    </div>
                     <AllQuestions />
                 </div>
             ) : (

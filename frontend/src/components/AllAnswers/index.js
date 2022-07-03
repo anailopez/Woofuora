@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllAnswers } from '../../store/answers';
 import { thunkDeleteAnswer } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
+import Modal from 'react-modal';
 import CreateAnswerForm from '../CreateAnswerForm';
 import './AllAnswers.css';
 
@@ -11,6 +12,8 @@ const AllAnswers = ({ question }) => {
     const userId = useSelector(state => state.session.user.id);
     const arrAnswers = useSelector(state => state.questionDetail.answers);
     const answers = answersArr.find(answer => answer.questionId === question.id);
+    const [showAnswerForm, setShowAnswerForm] = useState(false);
+    Modal.setAppElement('body');
 
     const dispatch = useDispatch();
 
@@ -18,7 +21,24 @@ const AllAnswers = ({ question }) => {
         dispatch(thunkGetAllAnswers());
     }, [dispatch]);
 
+    function openAnswerModal() {
+        setShowAnswerForm(true)
+    }
 
+    function closeAnswerModal() {
+        setShowAnswerForm(false)
+    }
+
+    const styling = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+    };
 
     return (
         <div>
@@ -27,11 +47,17 @@ const AllAnswers = ({ question }) => {
                     {!answers && (
                         <p>This question currently has no answers. Be the first to answer!</p>
                     )}
-                    <CreateAnswerForm question={question} />
+                    <div className='leave-answer-button'>
+                        <button onClick={openAnswerModal}>Leave an answer to this question!</button>
+                    </div>
+                    <Modal isOpen={showAnswerForm} style={styling}>
+                        <CreateAnswerForm question={question} closeAnswerModal={closeAnswerModal} />
+                        <button onClick={closeAnswerModal}>Cancel answer</button>
+                    </Modal>
                 </>
             )}
             {answersArr && answersArr.map(answer => (
-                <div key={answer.id}>
+                <div key={answer.id} className={'allanswers-content'}>
                     {answer.Question && question.id === answer.Question.id && (
                         <div>
                             {answer.User && (
@@ -47,12 +73,13 @@ const AllAnswers = ({ question }) => {
                                 {answer.image && (
                                     <img src={answer.image} />
                                 )}
+                                {answer.userId === userId && (
+                                    <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
+                                        <i className="fa-solid fa-trash-can" /> Delete your answer
+                                    </button>
+                                )}
 
                             </div>
-                            {answer.userId === userId && (
-                                <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>Delete your answer</button>
-                            )}
-
                         </div>
                     )}
                 </div>

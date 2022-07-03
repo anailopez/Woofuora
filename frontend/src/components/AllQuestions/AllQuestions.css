@@ -1,15 +1,17 @@
+
+
 .allQuestions {
     margin-top: 40px;
 }
 
 .allquestions-content {
-    background-color: #FEF5ED;
+    background-color: white;
     display: flex;
     flex-direction: column;
     margin-bottom: 2%;
     width: 800px;
     max-width: 800px;
-    box-shadow: 2px -3px 22px 1px black;
+
 }
 
 .user-display {
@@ -40,7 +42,7 @@
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .question-content h2 {
@@ -58,8 +60,4 @@
 
 .see-answers-button {
     font-size: 20px;
-}
-
-.allanswers-content {
-    border-top: 1px solid black;
 }
