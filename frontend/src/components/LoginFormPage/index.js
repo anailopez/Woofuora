@@ -38,7 +38,7 @@ function LoginFormPage() {
         <div className='login-form-page'>
             <div className='login-form-box'>
                 <div className='logo'>
-                    <img src={`${logo}`} />
+                    <img src={`${logo}`} alt="logo" />
                 </div>
                 <div className='login-signup'>
                     <div className='signup-here'>

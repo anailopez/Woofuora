@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkAddQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
-import { thunkGetAllAnswers } from '../../store/answers';
 import './CreateQuestion.css';
 
 const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {

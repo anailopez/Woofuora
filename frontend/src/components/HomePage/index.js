@@ -11,9 +11,8 @@ import './HomePage.css';
 
 const HomePage = ({ isLoaded }) => {
     const user = useSelector(state => state.session.user);
-    const questions = useSelector(state => state.allQuestions.orderedQuestions);
     const [showPostForm, setShowPostForm] = useState(false);
-    const users = useSelector(state => state.session.users);
+
     Modal.setAppElement('body');
 
     const dispatch = useDispatch();

@@ -10,7 +10,6 @@ import './AllAnswers.css';
 const AllAnswers = ({ question }) => {
     const answersArr = useSelector(state => state.questionDetail.answers.orderedAnswers);
     const userId = useSelector(state => state.session.user.id);
-    const arrAnswers = useSelector(state => state.questionDetail.answers);
     const answers = answersArr.find(answer => answer.questionId === question.id);
     const [showAnswerForm, setShowAnswerForm] = useState(false);
     Modal.setAppElement('body');
@@ -74,7 +73,7 @@ const AllAnswers = ({ question }) => {
                             <div className='answer-content'>
                                 <p>{answer.body}</p>
                                 {answer.image && (
-                                    <img src={answer.image} />
+                                    <img src={answer.image} alt="answer"/>
                                 )}
                                 {answer.userId === userId && (
                                     <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>

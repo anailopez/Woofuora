@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkGetAllAnswers } from '../../store/answers';
@@ -33,7 +32,7 @@ const UserProfile = () => {
             <div className='user-section'>
                 {user && (
                     <div className='user-details'>
-                        <img src={user.icon} />
+                        <img src={user.icon} alt="icon" />
                         <div>
                             <h1>{user.username}</h1>
                             <h2>{user.bio}</h2>
@@ -55,7 +54,7 @@ const UserProfile = () => {
                                         <p>Description: {question.description}</p>
                                     )}
                                     {question.image && (
-                                        <img src={question.image} />
+                                        <img src={question.image} alt="question" />
                                     )}
                                 </div>
                             )}
@@ -72,7 +71,7 @@ const UserProfile = () => {
                                 <div className='answers'>
                                     <h4>- {answer.body}</h4>
                                     {answer.image && (
-                                        <img src={answer.image} />
+                                        <img src={answer.image} alt="answer" />
                                     )}
                                 </div>
                             )}

@@ -56,7 +56,7 @@ const AllQuestions = () => {
                         <h2>{question.title}</h2>
                         <p>{question.description}</p>
                         {question.image && (
-                            <img src={question.image} />
+                            <img src={question.image} alt="question" />
                         )}
                         {question.User && showEditForm && question.User.id === userId && buttonId === question.id && (
                             <div>
