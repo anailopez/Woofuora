@@ -50,9 +50,9 @@ const UserProfile = () => {
                         <div key={generateKey(question.id)}>
                             {question.ownerId === userId && (
                                 <div className='questions'>
-                                    <h4>{question.title}</h4>
+                                    <h4>- {question.title}</h4>
                                     {question.description && (
-                                        <p>{question.description}</p>
+                                        <p>Description: {question.description}</p>
                                     )}
                                     {question.image && (
                                         <img src={question.image} />
@@ -70,7 +70,7 @@ const UserProfile = () => {
                         <div key={generateKey(answer.id)}>
                             {answer.userId === userId && (
                                 <div className='answers'>
-                                    <p>{answer.body}</p>
+                                    <h4>- {answer.body}</h4>
                                     {answer.image && (
                                         <img src={answer.image} />
                                     )}

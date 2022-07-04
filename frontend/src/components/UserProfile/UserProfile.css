@@ -1,10 +1,10 @@
-.user-section{
+.user-section {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.user-details{
+.user-details {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
@@ -17,15 +17,46 @@
     margin-top: 60px;
 }
 
-.user-details div{
+.user-details div {
     margin-left: 80px;
 }
 
-.questions-answers{
-    display: inline-flex;
+.user-details h1, h2 {
+    font-size: 30px;
+}
+
+.questions-answers {
+    display: flex;
     flex-direction: row;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-left: 40px;
     margin-right: 40px;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.questions-answers h3 {
+    font-size: 20px;
+}
+
+.questions-answers h4 {
+    font-size: 15px;
+}
+
+.questions-section {
+    max-width: 500px;
+    margin-right: 100px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.answers-section {
+    max-width: 500px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.questions, .answers{
+    border-top: 1px solid gray;
 }
