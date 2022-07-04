@@ -45,21 +45,23 @@ const HomePage = ({ isLoaded }) => {
 
     return (
         <div className='homepage'>
-            <Navigation isLoaded={isLoaded} />
             {user ? (
-                <div className='questions-content'>
-                    <div className='createQuestion-container'>
-                        <button onClick={openQuestionModal}> Post a new question! </button>
-                        <div className='post-question-form'>
-                            <Modal isOpen={showPostForm} style={questionFormStyle}>
-                                <h2>What's your question?</h2>
-                                <CreateQuestionForm showPostForm={showPostForm} closeQuestionModal={closeQuestionModal} />
-                                <button onClick={closeQuestionModal}>Cancel question</button>
-                            </Modal >
+                <>
+                    <Navigation isLoaded={isLoaded} />
+                    <div className='questions-content'>
+                        <div className='createQuestion-container'>
+                            <button className="post-questions-button" onClick={openQuestionModal}> Post a new question! </button>
+                            <div className='post-question-form'>
+                                <Modal isOpen={showPostForm} style={questionFormStyle}>
+                                    <h2>What's your question?</h2>
+                                    <CreateQuestionForm showPostForm={showPostForm} closeQuestionModal={closeQuestionModal} />
+                                    <button onClick={closeQuestionModal}>Cancel question</button>
+                                </Modal >
+                            </div>
                         </div>
+                        <AllQuestions />
                     </div>
-                    <AllQuestions />
-                </div>
+                </>
             ) : (
                 <Redirect to='/login' />
             )}

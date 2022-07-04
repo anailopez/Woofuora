@@ -1,3 +1,7 @@
+.all-answers p{
+    padding-left: 5%;
+}
+
 .answer-user {
     display: flex;
     flex-direction: row;
@@ -11,15 +15,12 @@
     border-radius: 50%;
     max-width: 10%;
     max-height: 70px;
+}
+
+.answer-user h4 {
     padding-left: 20px;
+    font-size: 15px;
 }
-
-.user-display h4 {
-    padding-left: 10px;
-    font-size: 25px;
-}
-
-
 
 .answer-content {
     display: flex;
@@ -31,6 +32,7 @@
     background-color: #FEF5ED;
     padding-bottom: 30px;
 }
+
 
 .answer-content img {
     max-height: 200px;

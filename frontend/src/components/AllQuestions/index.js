@@ -72,8 +72,10 @@ const AllQuestions = () => {
                                     <i className="fa-solid fa-pen" /> Edit Question
                                 </button>
                                 <button onClick={() => {
-                                    handleDelete(question); dispatch(thunkGetAllQuestions());
+                                    handleDelete(question);
+                                    dispatch(thunkGetAllQuestions());
                                     dispatch(thunkGetAllAnswers());
+                                    setShowAnswers(false);
                                 }}>
                                     <i className="fa-solid fa-trash-can" /> Delete Question
                                 </button>

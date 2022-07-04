@@ -41,11 +41,14 @@ const AllAnswers = ({ question }) => {
     };
 
     return (
-        <div>
+        <div className='all-answers'>
+            {!answers && (
+                <p>This question currently has no answers.</p>
+            )}
             {question.ownerId !== userId && (
                 <>
                     {!answers && (
-                        <p>This question currently has no answers. Be the first to answer!</p>
+                        <p>Be the first to answer this question!</p>
                     )}
                     <div className='leave-answer-button'>
                         <button onClick={openAnswerModal}>Leave an answer to this question!</button>

@@ -8,14 +8,13 @@
 
 body {
     background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
-    ;
 }
 
 button {
     border: none;
     background-color: #92B4EC;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 button:hover {
@@ -36,6 +35,5 @@ textarea {
     margin: 10px 0;
     border-radius: 10px;
     border: 0;
-    /* box-shadow: 0 0 15px 10px rgba(0,0,0,0.06); */
     border: 1px solid gray;
 }

@@ -5,7 +5,7 @@ import { thunkGetAllAnswers } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
 import './CreateAnswerForm.css';
 
-const CreateAnswerForm = ({ question }) => {
+const CreateAnswerForm = ({ question, closeAnswerModal }) => {
     const [body, setBody] = useState('');
     const [image, setImage] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
@@ -61,6 +61,7 @@ const CreateAnswerForm = ({ question }) => {
         setImage('');
         setValidationErrors([]);
         setHasSubmitted(false);
+        closeAnswerModal();
     };
 
 

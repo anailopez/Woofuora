@@ -15,6 +15,10 @@ const UserProfile = () => {
     const usersArr = useSelector(state => state.session.users);
     const user = usersArr.find(user => userId === user.id);
 
+    const generateKey = (id) => {
+        return `${id}${Math.random()}`
+    }
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,10 +44,10 @@ const UserProfile = () => {
             <div className='questions-answers'>
                 <div className='questions-section'>
                     {user && (
-                        <h3>Questions posted by {user.username}:</h3>
+                        <h3>All of your questions:</h3>
                     )}
                     {questionsArr && questionsArr.map(question => (
-                        <div key={question.id}>
+                        <div key={generateKey(question.id)}>
                             {question.ownerId === userId && (
                                 <div className='questions'>
                                     <h4>{question.title}</h4>
@@ -60,10 +64,10 @@ const UserProfile = () => {
                 </div>
                 <div className='answers-section'>
                     {user && (
-                        <h3>Answers posted by {user.username}: </h3>
+                        <h3>All of your answers: </h3>
                     )}
                     {answersArr && answersArr.map(answer => (
-                        <div key={answer.id}>
+                        <div key={generateKey(answer.id)}>
                             {answer.userId === userId && (
                                 <div className='answers'>
                                     <p>{answer.body}</p>

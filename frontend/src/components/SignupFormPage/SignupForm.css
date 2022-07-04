@@ -12,3 +12,9 @@
 .signup-form-box button {
     margin-bottom: 20px;
 }
+
+.signup-form{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+}
