@@ -33,7 +33,7 @@ function ProfileButton({ user }) {
     };
 
     const redirect = () => {
-        const path = '/user';
+        const path = '/user-profile';
         history.push(path);
     }
 
@@ -45,10 +45,9 @@ function ProfileButton({ user }) {
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    {/* <li>
+                    <li>
                         <button onClick={redirect}>View Profile</button>
-                    </li> */}
+                    </li>
                     <li>
                         <button onClick={logout}>Log Out</button>
                     </li>

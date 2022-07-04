@@ -5,7 +5,7 @@ import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkGetAllAnswers } from '../../store/answers';
 import './CreateQuestion.css';
 
-const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
+const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
@@ -63,44 +63,50 @@ const CreateQuestionForm = ({ showPostForm, setShowPostForm }) => {
         setImage('');
         setValidationErrors([]);
         setHasSubmitted(false);
-        setShowPostForm(false);
+        closeQuestionModal();
     };
 
     return (
-        <div>
-            <ul>
-                {hasSubmitted && showPostForm && validationErrors.length > 0 && validationErrors.map(error => (
-                    <li key={error}>{error}</li>
-                ))}
-            </ul>
-            <form onSubmit={handleSubmit}>
-                <label>Title</label>
-                <input
-                    type='text'
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                    placeholder='Title'
-                    name='title'
-                />
-                <label>Description</label>
-                <textarea
-                    onChange={(e) => setDescription(e.target.value)}
-                    value={description}
-                    name='description'
-                    placeholder='Description'
-                    rows='5'
-                />
-                <label>Image</label>
-                <input
-                    type='text'
-                    onChange={(e) => setImage(e.target.value)}
-                    value={image}
-                    placeholder='Image URL'
-                    name='image'
-                    className='image-input'
-                />
-                <button className='post-button' type='submit'>Post your question!</button>
-            </form>
+        <div className='createQuestion-bg'>
+            <div className='createQuestion-container'>
+                <div className='createQuestion-errors'>
+                    <ul>
+                        {hasSubmitted && showPostForm && validationErrors.length > 0 && validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
+                <div className='createQuestion-form'>
+                    <form onSubmit={handleSubmit}>
+                        <label>Title</label>
+                        <input
+                            type='text'
+                            onChange={(e) => setTitle(e.target.value)}
+                            value={title}
+                            placeholder='Title'
+                            name='title'
+                        />
+                        <label>Description</label>
+                        <textarea
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
+                            name='description'
+                            placeholder='Description'
+                            rows='5'
+                        />
+                        <label>Image</label>
+                        <input
+                            type='text'
+                            onChange={(e) => setImage(e.target.value)}
+                            value={image}
+                            placeholder='Image URL'
+                            name='image'
+                            className='image-input'
+                        />
+                        <button className='post-button' type='submit'>Post your question!</button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

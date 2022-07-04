@@ -25,7 +25,7 @@ const actionGetUsers = (users) => {
 }
 
 export const thunkGetUsers = (users) => async (dispatch) => {
-    const response = await csrfFetch('/api/session');
+    const response = await csrfFetch('/api/users');
 
     if (response.ok) {
         const users = await response.json();
@@ -58,13 +58,13 @@ export const restoreUser = () => async dispatch => {
 };
 
 export const signup = (user) => async (dispatch) => {
-    const { username, email, password, icon, bio } = user;
+    const { email, password, username, icon, bio } = user;
     const response = await csrfFetch("/api/users", {
         method: "POST",
         body: JSON.stringify({
-            username,
             email,
             password,
+            username,
             icon,
             bio
         }),

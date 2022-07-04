@@ -10,7 +10,9 @@ import './AllQuestions.css';
 
 const AllQuestions = () => {
     const [showEditForm, setShowEditForm] = useState(false);
+    const [showAnswers, setShowAnswers] = useState(false);
     const [buttonId, setButtonId] = useState(null);
+    const [answerButtonId, setAnswerButtonId] = useState(null);
 
     const dispatch = useDispatch();
 
@@ -18,7 +20,6 @@ const AllQuestions = () => {
     const userId = useSelector(state => state.session.user.id);
 
     const answers = useSelector(state => Object.values(state.questionDetail.answers));
-    // console.log(answers);
 
     useEffect(() => {
 
@@ -58,29 +59,43 @@ const AllQuestions = () => {
                             <img src={question.image} />
                         )}
                         {question.User && showEditForm && question.User.id === userId && buttonId === question.id && (
-                            <div className='edit-question-form-area'>
-                                <EditQuestionForm questionId={question.id} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
-                                <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
+                            <div>
+                                <div>
+                                    <EditQuestionForm questionId={question.id} showEditForm={showEditForm} setShowEditForm={setShowEditForm} />
+                                    <button onClick={() => setShowEditForm(false)}>Cancel Changes</button>
+                                </div>
                             </div>
                         )}
                         {question.User && question.ownerId === userId && !showEditForm && (
                             <div className='edit-delete-buttons'>
                                 <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>
-                                    <i className="fa-solid fa-pen" />
-                                    Edit Question
+                                    <i className="fa-solid fa-pen" /> Edit Question
                                 </button>
                                 <button onClick={() => {
-                                    handleDelete(question); dispatch(thunkGetAllQuestions());
+                                    handleDelete(question);
+                                    dispatch(thunkGetAllQuestions());
                                     dispatch(thunkGetAllAnswers());
+                                    setShowAnswers(false);
                                 }}>
-                                    <i className="fa-solid fa-trash-can" />
-                                    Delete Question
+                                    <i className="fa-solid fa-trash-can" /> Delete Question
                                 </button>
                             </div>
                         )}
                     </div>
                     <div className='allanswers-content'>
-                        <AllAnswers question={question} />
+                        {!showAnswers && (
+                            <button onClick={() => { setShowAnswers(true); setAnswerButtonId(question.id) }}>
+                                <i className="fa-solid fa-comments" /> See Answers
+                            </button>
+                        )}
+                        {showAnswers && answerButtonId === question.id && (
+                            <>
+                                <button onClick={() => setShowAnswers(false)}>
+                                    <i className="fa-solid fa-comment-slash" /> Hide Answers
+                                </button>
+                                <AllAnswers question={question} />
+                            </>
+                        )}
                     </div>
                 </div>
             ))}
