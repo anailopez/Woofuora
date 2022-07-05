@@ -49,7 +49,8 @@ function SignupFormPage() {
                         <label>Sign Up</label>
                     </div>
                     <label>
-                        Email
+                        Email:
+                        <br />
                         <input
                             type="text"
                             value={email}
@@ -58,7 +59,8 @@ function SignupFormPage() {
                         />
                     </label>
                     <label>
-                        Username
+                        Username:
+                        <br />
                         <input
                             type="text"
                             value={username}
@@ -67,7 +69,8 @@ function SignupFormPage() {
                         />
                     </label>
                     <label>
-                        Password
+                        Password:
+                        <br />
                         <input
                             type="password"
                             value={password}
@@ -76,7 +79,8 @@ function SignupFormPage() {
                         />
                     </label>
                     <label>
-                        Confirm Password
+                        Confirm Password:
+                        <br />
                         <input
                             type="password"
                             value={confirmPassword}

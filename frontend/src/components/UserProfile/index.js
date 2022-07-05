@@ -53,9 +53,6 @@ const UserProfile = () => {
                                     {question.description && (
                                         <p>Description: {question.description}</p>
                                     )}
-                                    {question.image && (
-                                        <img src={question.image} alt="question" />
-                                    )}
                                 </div>
                             )}
                         </div>
@@ -70,9 +67,6 @@ const UserProfile = () => {
                             {answer.userId === userId && (
                                 <div className='answers'>
                                     <h4>- {answer.body}</h4>
-                                    {answer.image && (
-                                        <img src={answer.image} alt="answer" />
-                                    )}
                                 </div>
                             )}
                         </div>
