@@ -1,11 +1,11 @@
-# Welcome to Woofoura!
+# Welcome to Woofuora!
 
-Woofoura is a website where dogs can ask questions, receive answers to their questions, and post answers to another dog's questions. Based off of Quora, Woofoura makes use of Express and Sequelize on the backend, with React and Redux on the frontend.
+Woofuora is a website where dogs can ask questions, receive answers to their questions, and post answers to another dog's questions. Based off of Quora, Woofuora makes use of Express and Sequelize on the backend, with React and Redux on the frontend.
 
-View the live site here: https://woofoura.herokuapp.com/
+View the live site here: https://woofuora.herokuapp.com/
 
-## Instructions on how to install Woofoura
-After cloning Woofoura into your desired directory:
+## Instructions on how to install Woofuora
+After cloning Woofuora into your desired directory:
 * run 'npm install' in both the backend and frontend directories to install all dependencies
 * In the backend directory, and create an '.env' file based off of the example provided in the '.env.example' file
 * To set up the database:
@@ -14,14 +14,14 @@ After cloning Woofoura into your desired directory:
 * To run the app in development mode: 
 > * In one terminal, cd into the backend directory and run 'npm start'
 > * In another terminal, cd into the frontend directory and run 'npm start'
-> * With both terminals running 'npm start', navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Woofoura!
+> * With both terminals running 'npm start', navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Woofuora!
 
-## View Woofoura's:
-* [Feature List](https://github.com/anailopez/Woofoura/wiki/Feature-List)
-* [Database Schema](https://github.com/anailopez/Woofoura/wiki/Database-Schema)
-* [Redux Store Shape](https://github.com/anailopez/Woofoura/wiki/Store-Shape)
-* [React Components List](https://github.com/anailopez/Woofoura/wiki/React-Components-List)
-* [Frontend Routes](https://github.com/anailopez/Woofoura/wiki/Frontend-Routes)
+## View Woofuora's:
+* [Feature List](https://github.com/anailopez/Woofuora/wiki/Feature-List)
+* [Database Schema](https://github.com/anailopez/Woofuora/wiki/Database-Schema)
+* [Redux Store Shape](https://github.com/anailopez/Woofuora/wiki/Store-Shape)
+* [React Components List](https://github.com/anailopez/Woofuora/wiki/React-Components-List)
+* [Frontend Routes](https://github.com/anailopez/Woofuora/wiki/Frontend-Routes)
 
 
 ## Techonologies Used
@@ -33,7 +33,7 @@ After cloning Woofoura into your desired directory:
 
 
 ## Login Page
-Upon first navigating to Woofoura, a user will be directed to the '/login' page, where they will be prompted to log in, sign up, or access the site using the demo user login.
+Upon first navigating to Woofuora, a user will be directed to the '/login' page, where they will be prompted to log in, sign up, or access the site using the demo user login.
 
 ![login](https://user-images.githubusercontent.com/96565654/177237702-fd808070-034c-41d0-bdae-48fdddc76933.png)
 
