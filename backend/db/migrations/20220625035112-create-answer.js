@@ -19,11 +19,11 @@ module.exports = {
         references: { model: 'Questions' }
       },
       body: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(2000),
         allowNull: false
       },
       image: {
-        type: Sequelize.STRING(250),
+        type: Sequelize.STRING(500),
         allowNull: true
       },
       createdAt: {

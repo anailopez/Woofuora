@@ -23,11 +23,11 @@ module.exports = {
         allowNull: false
       },
       icon: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(500),
         allowNull: true
       },
       bio: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(500),
         allowNull: true
       },
       createdAt: {
