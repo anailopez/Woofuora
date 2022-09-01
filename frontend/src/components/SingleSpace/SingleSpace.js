@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { thunkGetAllSpaces } from '../../store/spaces';
 import { thunkGetAllQuestions } from '../../store/questions';
+import { thunkDeleteSpace } from '../../store/spaces';
 import AllQuestions from '../AllQuestions';
 
 const SingleSpace = () => {
@@ -12,12 +13,18 @@ const SingleSpace = () => {
     const questions = useSelector(state => Object.values(state.allQuestions));
     const filteredQuestions = questions.filter(question => question.spaceId === parseInt(spaceId));
     const dispatch = useDispatch();
-    console.log(filteredQuestions);
+    // console.log(filteredQuestions);
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(thunkGetAllSpaces());
         dispatch(thunkGetAllQuestions());
     }, [dispatch]);
+
+    const handleDelete = async (spaceId) => {
+        await dispatch(thunkDeleteSpace(spaceId));
+        history.push('/');
+    }
 
     return (
         <>
@@ -25,6 +32,7 @@ const SingleSpace = () => {
                 <>
                     <img src={`${space.icon}`}></img>
                     <h1>{space.name}</h1>
+                    <button onClick={() => handleDelete(space.id)}>Delete space</button>
                     <div>
                         {filteredQuestions && filteredQuestions.map(question => (
                             <>

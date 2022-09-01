@@ -20,6 +20,12 @@ const actionCreateSpace = (space) => {
     }
 }
 
+const actionDeleteSpace = (spaceId) => {
+    return {
+        type: DELETE_SPACE,
+        spaceId
+    }
+}
 
 //thunk action creators
 export const thunkGetAllSpaces = () => async (dispatch) => {
@@ -55,6 +61,20 @@ export const thunkCreateSpace = (space) => async (dispatch) => {
     }
 }
 
+export const thunkDeleteSpace = (spaceId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spaces/${spaceId}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const id = await response.json();
+        dispatch(actionDeleteSpace(id));
+        return id;
+    } else {
+        return await response.json();
+    }
+}
+
 
 const initialState = {}
 
@@ -70,7 +90,12 @@ const spacesReducer = (state = initialState, action) => {
         case CREATE_SPACE:
             const createState = { ...state }
             createState[action.space.id] = action.space
-            return createState
+            return createState;
+
+        case DELETE_SPACE:
+            const deleteState = { ...state }
+            delete deleteState[action.spaceId]
+            return deleteState;
 
         default:
             return state

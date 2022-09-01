@@ -17,4 +17,14 @@ router.post('/create', asyncHandler(async (req, res) => {
     return res.json(space);
 }))
 
+//delete a space
+router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
+    const spaceId = req.params.id;
+
+    if (spaceId) {
+        await Space.destroy({ where: { id: spaceId } });
+        return res.json(spaceId)
+    }
+}))
+
 module.exports = router;
