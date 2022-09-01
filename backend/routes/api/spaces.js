@@ -11,11 +11,10 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(spaces);
 }));
 
-// //get one question
-// router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-//     const spaceId = req.params.id;
-//     const space = Space.findOne({ where: { id: spaceId } })
-//     return res.json(space);
-// }))
+//create a space
+router.post('/create', asyncHandler(async (req, res) => {
+    const space = await Space.create(req.body);
+    return res.json(space);
+}))
 
 module.exports = router;

@@ -1,7 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_SPACES = 'spaces/getAllSpaces';
-// const GET_ONE_SPACE = 'spaces/getOneSpace';
+const CREATE_SPACE = 'spaces/createSpace';
+const DELETE_SPACE = 'sapces/deleteSpace';
 
 
 //regular action creators
@@ -12,12 +13,12 @@ const actionGetAllSpaces = (spaces) => {
     }
 };
 
-// const actionGetOneSpace = (space) => {
-//     return {
-//         type: GET_ONE_SPACE,
-//         space
-//     }
-// }
+const actionCreateSpace = (space) => {
+    return {
+        type: CREATE_SPACE,
+        space
+    }
+}
 
 
 //thunk action creators
@@ -33,17 +34,26 @@ export const thunkGetAllSpaces = () => async (dispatch) => {
     }
 };
 
-// export const thunkGetOneSpace = (spaceId) => async (dispatch) => {
-//     const response = await csrfFetch(`/api/spaces/${spaceId}`);
+export const thunkCreateSpace = (space) => async (dispatch) => {
+    const { name, icon, description } = space;
+    const response = await csrfFetch('/api/spaces/create', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name,
+            icon,
+            description
+        })
+    });
 
-//     if (response.ok) {
-//         const space = await response.json();
-//         dispatch(actionGetOneSpace(space));
-//         return space;
-//     } else {
-//         return await response.json();
-//     }
-// }
+    if (response.ok) {
+        const newSpace = await response.json();
+        dispatch(actionCreateSpace(newSpace));
+        return newSpace;
+    } else {
+        return await response.json();
+    }
+}
 
 
 const initialState = {}
@@ -57,10 +67,10 @@ const spacesReducer = (state = initialState, action) => {
             })
             return allSpaceState;
 
-        // case GET_ONE_SPACE:
-        //     const oneSpaceState = { ...state }
-        //     oneSpaceState[action.space.id] = action.space
-        //     return oneSpaceState;
+        case CREATE_SPACE:
+            const createState = { ...state }
+            createState[action.space.id] = action.space
+            return createState
 
         default:
             return state

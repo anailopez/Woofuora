@@ -44,7 +44,7 @@ const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
             updatedAt: new Date()
         };
 
-        console.log(updatedQuestion);
+        // console.log(updatedQuestion);
 
         const question = await dispatch(thunkUpdateQuestion(updatedQuestion));
 
