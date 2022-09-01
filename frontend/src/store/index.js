@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import questionsReducer from './questions';
 import answersReducer from './answers';
+import spacesReducer from './spaces';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
         questionsReducer,
         answers: answersReducer
     }),
-    allQuestions: questionsReducer
+    allQuestions: questionsReducer,
+    spaces: spacesReducer
 });
 
 let enhancer;

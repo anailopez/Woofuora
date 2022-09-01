@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import AllQuestions from '../AllQuestions';
 import CreateQuestionForm from '../CreateQuestionForm';
 import Navigation from '../Navigation';
+import AllSpaces from '../AllSpaces/AllSpaces';
 import './HomePage.css';
 
 
@@ -47,6 +48,9 @@ const HomePage = ({ isLoaded }) => {
             {user ? (
                 <>
                     <Navigation isLoaded={isLoaded} />
+                    <div className='all-spaces'>
+                        <AllSpaces />
+                    </div>
                     <div className='questions-content'>
                         <div className='createQuestion-container'>
                             <button className="post-questions-button" onClick={openQuestionModal}> Post a new question! </button>
