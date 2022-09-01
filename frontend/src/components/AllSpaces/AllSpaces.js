@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import thunk from 'redux-thunk';
+import { Link } from 'react-router-dom';
 import { thunkGetAllSpaces } from '../../store/spaces';
 
 const AllSpaces = () => {
@@ -15,7 +15,9 @@ const AllSpaces = () => {
         <>
             <ul>
                 {spaces && spaces.map(space => (
-                    <li>{space.name}</li>
+                    <Link to={`/spaces/${space.id}`}>
+                        <li>{space.name}</li>
+                    </Link>
                 ))}
             </ul>
         </>

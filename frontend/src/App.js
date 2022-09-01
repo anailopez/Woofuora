@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import HomePage from "./components/HomePage";
 import UserProfile from "./components/UserProfile";
+import SingleSpace from "./components/SingleSpace/SingleSpace";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route exact path="/user-profile">
             <UserProfile />
+          </Route>
+          <Route exact path='/spaces/:spaceId'>
+            <SingleSpace />
           </Route>
         </Switch>
       )}
