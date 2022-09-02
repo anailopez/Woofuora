@@ -15,7 +15,7 @@ router.get('/', asyncHandler(async (req, res) => {
 router.post('/create', asyncHandler(async (req, res) => {
     const space = await Space.create(req.body);
     return res.json(space);
-}))
+}));
 
 //delete a space
 router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
@@ -25,6 +25,17 @@ router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
         await Space.destroy({ where: { id: spaceId } });
         return res.json(spaceId)
     }
-}))
+}));
+
+//edit a space
+router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
+    const spaceId = req.params.id;
+    const space = await Space.findOne({ where: { id: spaceId } });
+
+    if (space) {
+        const updatedSpace = await space.update(req.body);
+        return updatedSpace;
+    }
+}));
 
 module.exports = router;

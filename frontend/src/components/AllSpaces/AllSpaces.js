@@ -6,6 +6,7 @@ import { thunkCreateSpace } from '../../store/spaces';
 import Modal from 'react-modal';
 
 const AllSpaces = () => {
+    const userId = useSelector(state => state.session?.user?.id);
     const spaces = useSelector(state => Object.values(state.spaces));
     const [showSpaceForm, setShowSpaceForm] = useState(false);
     const [name, setName] = useState('');
@@ -78,6 +79,7 @@ const AllSpaces = () => {
         setHasSubmitted(true);
 
         const newSpace = {
+            ownerId: userId,
             name: name,
             icon: icon,
             description: description,
@@ -115,6 +117,12 @@ const AllSpaces = () => {
                         onChange={(e) => setName(e.target.value)}
                         value={name}
                         name='name'
+                    />
+                    <input
+                        type='text'
+                        onChange={(e) => setIcon(e.target.value)}
+                        value={icon}
+                        name='icon'
                     />
                     <label htmlFor='description'>Brief description</label>
                     <p>Include a few keywords to show people what to expect if they join.</p>

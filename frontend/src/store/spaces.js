@@ -2,8 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_SPACES = 'spaces/getAllSpaces';
 const CREATE_SPACE = 'spaces/createSpace';
-const DELETE_SPACE = 'sapces/deleteSpace';
-
+const DELETE_SPACE = 'spaces/deleteSpace';
+const EDIT_SPACE = 'spaces/editSpace';
 
 //regular action creators
 const actionGetAllSpaces = (spaces) => {
@@ -27,6 +27,14 @@ const actionDeleteSpace = (spaceId) => {
     }
 }
 
+const actionEditSpace = (space) => {
+    return {
+        type: EDIT_SPACE,
+        space
+    }
+}
+
+
 //thunk action creators
 export const thunkGetAllSpaces = () => async (dispatch) => {
     const response = await csrfFetch('/api/spaces');
@@ -41,11 +49,12 @@ export const thunkGetAllSpaces = () => async (dispatch) => {
 };
 
 export const thunkCreateSpace = (space) => async (dispatch) => {
-    const { name, icon, description } = space;
+    const { ownerId, name, icon, description } = space;
     const response = await csrfFetch('/api/spaces/create', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+            ownerId,
             name,
             icon,
             description
@@ -75,6 +84,21 @@ export const thunkDeleteSpace = (spaceId) => async (dispatch) => {
     }
 }
 
+export const thunkEditSpace = (spaceData) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spaces/${spaceData.spaceId}/edit`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spaceData)
+    });
+
+    if (response.ok) {
+        const space = await response.json();
+        dispatch(actionEditSpace(space));
+        return space;
+    } else {
+        return await response.json();
+    }
+}
 
 const initialState = {}
 
@@ -96,6 +120,11 @@ const spacesReducer = (state = initialState, action) => {
             const deleteState = { ...state }
             delete deleteState[action.spaceId]
             return deleteState;
+
+        case EDIT_SPACE:
+            const editState = { ...state }
+            editState[state.space.id] = state.space
+            return editState;
 
         default:
             return state

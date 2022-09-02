@@ -102,6 +102,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     User.hasMany(models.Question, { foreignKey: 'ownerId' });
     User.hasMany(models.Answer, { foreignKey: 'userId' });
+    User.hasMany(models.Space, { foreignKey: 'ownerId' });
   };
 
   return User;
