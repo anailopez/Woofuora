@@ -17,8 +17,8 @@ const AllReplies = ({ answer }) => {
         <div className='all-replies'>
             {replies && filteredReplies.map(reply => (
                 <>
-                    <img src={reply.User.icon} alt='user icon'></img>
-                    <h5>{reply.User.username}</h5>
+                    <img src={reply.User?.icon} alt='user icon'></img>
+                    <h5>{reply.User?.username}</h5>
                     <p>{reply.content}</p>
                 </>
             ))}

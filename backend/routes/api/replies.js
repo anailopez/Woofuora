@@ -10,6 +10,14 @@ router.get('/', asyncHandler(async (req, res) => {
         include: 'User'
     });
     return res.json(replies);
-}))
+}));
+
+//create a reply
+router.post('/', asyncHandler(async (req, res) => {
+    const reply = await Reply.create(req.body);
+    return res.json(reply);
+}));
+
+
 
 module.exports = router;
