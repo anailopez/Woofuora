@@ -4,6 +4,7 @@ import sessionReducer from './session';
 import questionsReducer from './questions';
 import answersReducer from './answers';
 import spacesReducer from './spaces';
+import repliesReducer from './replies';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
         answers: answersReducer
     }),
     allQuestions: questionsReducer,
-    spaces: spacesReducer
+    spaces: spacesReducer,
+    replies: repliesReducer
 });
 
 let enhancer;

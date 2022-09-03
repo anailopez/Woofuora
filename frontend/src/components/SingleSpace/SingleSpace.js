@@ -6,6 +6,8 @@ import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkDeleteSpace } from '../../store/spaces';
 import { thunkEditSpace } from '../../store/spaces';
 import Modal from 'react-modal';
+import Navigation from '../Navigation';
+import AllSpaces from '../AllSpaces/AllSpaces.js';
 
 const SingleSpace = () => {
     const userId = useSelector(state => state.session?.user?.id);
@@ -119,6 +121,8 @@ const SingleSpace = () => {
 
     return (
         <>
+            <Navigation />
+            <AllSpaces />
             {space && (
                 <>
                     {space.ownerId === userId && (

@@ -5,6 +5,7 @@ import { thunkDeleteAnswer } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
 import Modal from 'react-modal';
 import CreateAnswerForm from '../CreateAnswerForm';
+import AllReplies from '../AllReplies/AllReplies';
 import './AllAnswers.css';
 
 const AllAnswers = ({ question }) => {
@@ -73,20 +74,23 @@ const AllAnswers = ({ question }) => {
                             <div className='answer-content'>
                                 <p>{answer.body}</p>
                                 {answer.image && (
-                                    <img src={answer.image} alt="answer"/>
+                                    <img src={answer.image} alt="answer" />
                                 )}
                                 {answer.userId === userId && (
                                     <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
                                         <i className="fa-solid fa-trash-can" /> Delete your answer
                                     </button>
                                 )}
+                                {answer.userId !== userId && (
+                                    <button>Reply</button>
+                                )}
 
                             </div>
+                            <AllReplies answer={answer} />
                         </div>
                     )}
                 </div>
-            ))
-            }
+            ))}
         </div >
     )
 }
