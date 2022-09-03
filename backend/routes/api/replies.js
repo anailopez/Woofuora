@@ -18,6 +18,15 @@ router.post('/', asyncHandler(async (req, res) => {
     return res.json(reply);
 }));
 
+//delete a reply
+router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res) => {
+    const replyId = req.params.id;
+
+    if (replyId) {
+        await Reply.destroy({ where: { id: replyId } })
+        return res.json(replyId);
+    }
+}))
 
 
 module.exports = router;

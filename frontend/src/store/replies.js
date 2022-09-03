@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf"
 
 const GET_ALL_REPLIES = 'replies/getAllReplies';
 const CREATE_REPLY = 'replies/createReply';
-
+const DELETE_REPLY = 'replies/deleteReply';
 
 //regular action creator
 const actionGetAllReplies = (replies) => {
@@ -16,6 +16,13 @@ const actionCreateReply = (reply) => {
     return {
         type: CREATE_REPLY,
         reply
+    }
+}
+
+const actionDeleteReply = (replyId) => {
+    return {
+        type: DELETE_REPLY,
+        replyId
     }
 }
 
@@ -54,6 +61,20 @@ export const thunkCreateReply = (reply) => async (dispatch) => {
     }
 }
 
+export const thunkDeleteReply = (replyId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/replies/${replyId}/delete`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        const id = await response.json();
+        dispatch(actionDeleteReply(id));
+        return id;
+    } else {
+        return await response.json();
+    }
+}
+
 
 const initialState = {}
 
@@ -70,6 +91,11 @@ const repliesReducer = (state = initialState, action) => {
             const createState = { ...state }
             createState[action.reply.id] = action.reply
             return createState;
+
+        case DELETE_REPLY:
+            const deleteState = { ...state }
+            delete deleteState[action.replyId]
+            return deleteState;
 
         default:
             return state;
