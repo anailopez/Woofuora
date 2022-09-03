@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkGetAllQuestions } from '../../store/questions';
-import { thunkGetAllAnswers } from '../../store/answers';
-import { thunkDeleteQuestion } from '../../store/questions';
-import { thunkDeleteAnswer } from '../../store/answers';
+import { thunkGetAllQuestions, thunkDeleteQuestion } from '../../store/questions';
+import { thunkGetAllAnswers, thunkDeleteAnswer } from '../../store/answers';
 import EditQuestionForm from '../EditQuestionForm';
 import AllAnswers from '../AllAnswers';
 import './AllQuestions.css';

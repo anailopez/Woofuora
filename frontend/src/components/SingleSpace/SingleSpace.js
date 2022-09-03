@@ -165,6 +165,7 @@ const SingleSpace = () => {
                     <div>
                         <img src={`${space.icon}`}></img>
                         <h1>{space.name}</h1>
+                        <p>{space.description}</p>
                         <div>
                             {filteredQuestions && filteredQuestions.map(question => (
                                 <>

@@ -3,27 +3,35 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_ANSWERS = 'answer/getAllAnswers';
 const ADD_ANSWER = 'answer/addAnswer';
 const DELETE_ANSWER = 'answer/deleteAnswer';
+const UPDATE_ANSWER = 'answer/updateAnswer';
 
 
 //regular action creator
-export const actionGetAllAnswers = (answers) => {
+const actionGetAllAnswers = (answers) => {
     return {
         type: GET_ALL_ANSWERS,
         answers
     }
 }
 
-export const actionAddAnswer = (answer) => {
+const actionAddAnswer = (answer) => {
     return {
         type: ADD_ANSWER,
         answer
     }
 }
 
-export const actionDeleteAnswer = (answerId) => {
+const actionDeleteAnswer = (answerId) => {
     return {
         type: DELETE_ANSWER,
         answerId
+    }
+}
+
+const actionUpdateAnswer = (answer) => {
+    return {
+        type: UPDATE_ANSWER,
+        answer
     }
 }
 
@@ -79,6 +87,24 @@ export const thunkDeleteAnswer = (answerId) => async (dispatch) => {
     }
 }
 
+export const thunkUpdateAnswer = (answerData) => async (dispatch) => {
+    const response = await csrfFetch(`/api/answers/${answerData.answerId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(answerData)
+    })
+
+    if (response.ok) {
+        const answer = await response.json();
+        dispatch(actionUpdateAnswer(answer));
+        return answer;
+    } else {
+        return await response.json();
+    }
+}
+
+
+
 //initial state
 const initialState = { orderedAnswers: [] };
 
@@ -119,6 +145,11 @@ const answersReducer = (state = initialState, action) => {
                 ...deleteAState,
                 orderedAnswers: sortList(updatedList)
             }
+
+        case UPDATE_ANSWER:
+            const updateState = { ...state };
+            updateState[action.answer.id] = action.answer;
+            return updateState;
 
         default:
             return state;

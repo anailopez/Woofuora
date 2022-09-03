@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllAnswers } from '../../store/answers';
-import { thunkDeleteAnswer } from '../../store/answers';
+import { thunkDeleteAnswer, thunkUpdateAnswer } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkCreateReply, thunkGetAllReplies } from '../../store/replies';
 import Modal from 'react-modal';
@@ -72,7 +72,7 @@ const AllAnswers = ({ question }) => {
             createdAt: new Date(),
             updatedAt: new Date()
         }
-        
+
         const reply = await dispatch(thunkCreateReply(newReply));
 
         if (reply) {
@@ -122,9 +122,12 @@ const AllAnswers = ({ question }) => {
                                     <img src={answer.image} alt="answer" />
                                 )}
                                 {answer.userId === userId && (
-                                    <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
-                                        <i className="fa-solid fa-trash-can" /> Delete your answer
-                                    </button>
+                                    <div>
+                                        <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
+                                            <i className="fa-solid fa-trash-can" /> Delete your answer
+                                        </button>
+                                        <button>Edit Answer</button>
+                                    </div>
                                 )}
                                 {answer.userId !== userId && (
                                     <>

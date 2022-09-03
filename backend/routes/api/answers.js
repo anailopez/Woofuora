@@ -32,4 +32,16 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res) => {
     }
 }))
 
+//edit an answer
+router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
+    const answerId = req.params.id;
+    const answer = await Answer.findOne({ where: { id: answerId } });
+
+    if (answer) {
+        const updatedAnswer = await answer.update(req.body);
+        return res.json(updatedAnswer);
+    }
+}));
+
+
 module.exports = router;
