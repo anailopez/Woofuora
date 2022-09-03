@@ -21,7 +21,7 @@ const SingleSpace = () => {
     const [description, setDescription] = useState('');
     const [icon, setIcon] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
-    const [hasSubmitted, setHasSubmitted] = useState(false);
+
     Modal.setAppElement('body');
 
     const dispatch = useDispatch();
@@ -51,7 +51,6 @@ const SingleSpace = () => {
         setDescription(space.description || '');
         setIcon(space.icon || '');
         setValidationErrors([]);
-        setHasSubmitted(false);
     };
 
     useEffect(() => {
@@ -79,8 +78,6 @@ const SingleSpace = () => {
     const handleEdit = async (e) => {
         e.preventDefault();
 
-        // setHasSubmitted(true);
-
         const updatedSpace = {
             spaceId: spaceId,
             name: name,
@@ -95,8 +92,8 @@ const SingleSpace = () => {
             reset();
         }
 
-        closeEditModal();
         await dispatch(thunkGetAllSpaces());
+        closeEditModal();
     }
 
     function openEditModal() {
@@ -132,7 +129,7 @@ const SingleSpace = () => {
                                 <div>
                                     <h2>Edit this space</h2>
                                     <ul>
-                                        {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                        {validationErrors.length > 0 && validationErrors.map(error => (
                                             <li key={error}>{error}</li>
                                         ))}
                                     </ul>

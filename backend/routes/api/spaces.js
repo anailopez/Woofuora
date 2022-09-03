@@ -34,7 +34,7 @@ router.put('/:id(\\d+)/edit', asyncHandler(async (req, res) => {
 
     if (space) {
         const updatedSpace = await space.update(req.body);
-        return updatedSpace;
+        return res.json(updatedSpace);
     }
 }));
 

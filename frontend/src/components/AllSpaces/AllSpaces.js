@@ -118,6 +118,7 @@ const AllSpaces = () => {
                         value={name}
                         name='name'
                     />
+                    <label htmlFor='icon'>Icon URL</label>
                     <input
                         type='text'
                         onChange={(e) => setIcon(e.target.value)}

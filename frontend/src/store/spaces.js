@@ -123,7 +123,7 @@ const spacesReducer = (state = initialState, action) => {
 
         case EDIT_SPACE:
             const editState = { ...state }
-            editState[state.space.id] = state.space
+            editState[action.space.id] = action.space
             return editState;
 
         default:
