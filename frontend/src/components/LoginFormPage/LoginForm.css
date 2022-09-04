@@ -1,11 +1,18 @@
-
-
 .login-form-page {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    margin: 200px auto;
+    /* margin: 200px auto; */
     justify-content: center;
     align-items: center;
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    height: 800px;
+    width: 100%;
+    /* padding: 20px; */
+    overflow-wrap: break-word;
+    margin-top: -8px;
+    margin-left: -7px;
+    /* margin-left: 5px; */
+
 }
 
 .login-form-box {
@@ -34,11 +41,18 @@
 .signup-here {
     margin-top: 40px;
     padding-right: 40px;
-    border-right: 1px solid black;
+    border-right: 1px solid #DEE0E1;
 }
 
 .demo-user {
-    padding-top: 50px;
+    /* padding-top: 50px; */
+    border: 1px solid #DEE0E1;
+    padding: 5px;
+    width: 200px
+}
+
+.demo-user:hover {
+    background-color: #F5F5F5;
 }
 
 .login-signup form {
@@ -47,29 +61,80 @@
     width: 200px;
 }
 
+#inputs {
+    padding-top: 10px;
+    color: #282829;
+    font-size: 13px;
+    font-weight: 700;
+}
 
 .login-inputs {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     padding-right: 20px;
-
-}
-
-button {
-    border-radius: 10px;
-    margin-right: 20px;
+    max-width: 200px;
 }
 
 .title {
     padding-bottom: 20px;
+    border-bottom: 1px solid #DEE0E1;
+    width: 200px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #282829;
 }
 
-.title, label{
+.title,
+label {
     font-size: 15px;
 }
 
 .navbar {
     display: hidden;
+}
+
+.login-form-page input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #DEE0E1;
+    outline: none;
+}
+
+.login-form-page input:focus {
+    border-color: #2E69FF;
+}
+
+.login-footer {
+    background-color: #F1F2F2;
+    border-top: 1px solid #DEE0E1;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 45px;
+    padding-right: 45px;
+    min-width: 700px;
+    max-width: 900px;
+}
+
+#login-btn {
+    background-color: #97B4FF;
+    border: none;
+    color: white;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+.signup-here button {
+    border: none;
+    background-color: white;
+    color: #636466;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.signup-here button:hover {
+    background-color: #F7F7F7
 }

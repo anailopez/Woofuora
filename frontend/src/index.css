@@ -2,20 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-body {
+/* body {
     background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
-}
+} */
 
-button {
+/* button {
     border: none;
     background-color: #92B4EC;
     color: white;
     font-size: 15px;
-}
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+} */
 
 button:hover {
     cursor: pointer;
@@ -29,11 +29,9 @@ h4 {
     cursor: default
 }
 
-input,
+/* input,
 textarea {
     padding: 10px;
     margin: 10px 0;
-    border-radius: 10px;
-    border: 0;
-    border: 1px solid gray;
-}
+    border: 1px solid #DEE0E1;
+} */
