@@ -82,14 +82,14 @@ const AllQuestions = () => {
                     </div>
                     <div className='allanswers-content'>
                         {!showAnswers && (
-                            <button onClick={() => { setShowAnswers(true); setAnswerButtonId(question.id) }}>
-                                <i className="fa-solid fa-comments" /> See Answers
+                            <button id='see-answers-btn' onClick={() => { setShowAnswers(true); setAnswerButtonId(question.id) }}>
+                                <i className="fa-regular fa-comment" />
                             </button>
                         )}
                         {showAnswers && answerButtonId === question.id && (
                             <>
                                 <button onClick={() => setShowAnswers(false)}>
-                                    <i className="fa-solid fa-comment-slash" /> Hide Answers
+                                    <i className="fa-regular fa-comment" />
                                 </button>
                                 <AllAnswers question={question} />
                             </>

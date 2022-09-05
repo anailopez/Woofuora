@@ -19,6 +19,7 @@ const AllAnswers = ({ question }) => {
     const [currentAnswer, setCurrentAnswer] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
 
+
     Modal.setAppElement('body');
 
     const dispatch = useDispatch();
@@ -96,7 +97,12 @@ const AllAnswers = ({ question }) => {
                         <p>Be the first to answer this question!</p>
                     )}
                     <div className='leave-answer-button'>
-                        <button onClick={openAnswerModal}>Leave an answer to this question!</button>
+                        <input
+                            type='text'
+                            placeholder='Add a comment...'
+                            onClick={openAnswerModal}
+                        />
+                        {/* <button onClick={openAnswerModal}>Leave an answer to this question!</button> */}
                     </div>
                     <Modal isOpen={showAnswerForm} style={styling}>
                         <CreateAnswerForm question={question} closeAnswerModal={closeAnswerModal} />
