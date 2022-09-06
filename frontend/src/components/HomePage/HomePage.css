@@ -1,15 +1,17 @@
 .homepage {
     background-color: #F1F2F2;
+    overflow-x: hidden;
 }
 
 .homepage-content {
     display: inline-flex;
     flex-direction: row;
     padding-top: 40px;
+    margin-left: 200px;
 }
 
-.all-spaces {
-    padding-right: 80px;
+.all-spaces-container {
+    padding-right: 100px;
     padding-left: 20px;
 }
 

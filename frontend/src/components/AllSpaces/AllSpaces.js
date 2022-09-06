@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { thunkGetAllSpaces } from '../../store/spaces';
 import { thunkCreateSpace } from '../../store/spaces';
 import Modal from 'react-modal';
+import './allspaces.css';
 
 const AllSpaces = () => {
     const userId = useSelector(state => state.session?.user?.id);
@@ -98,8 +99,8 @@ const AllSpaces = () => {
 
 
     return (
-        <>
-            <button onClick={openSpaceModal}><i className="fa-solid fa-plus" />Create Space</button>
+        <div className='all-spaces'>
+            <button id='create-space-btn' onClick={openSpaceModal}><i className="fa-solid fa-plus" />Create Space</button>
             <Modal isOpen={showSpaceForm} style={styling}>
                 <button onClick={closeSpaceModal}><i className="fa-solid fa-x" /></button>
                 <ul>
@@ -136,14 +137,14 @@ const AllSpaces = () => {
                     <button>Create</button>
                 </form>
             </Modal>
-            <ul>
+            <ul id='all-spaces-list'>
                 {spaces && spaces.map(space => (
                     <Link to={`/spaces/${space.id}`}>
                         <li>{space.name}</li>
                     </Link>
                 ))}
             </ul>
-        </>
+        </div>
     )
 }
 

@@ -52,7 +52,7 @@ const HomePage = ({ isLoaded }) => {
                 <>
                     <Navigation isLoaded={isLoaded} />
                     <div className='homepage-content'>
-                        <div className='all-spaces'>
+                        <div className='all-spaces-container'>
                             <AllSpaces />
                         </div>
                         <div className='questions-content'>
