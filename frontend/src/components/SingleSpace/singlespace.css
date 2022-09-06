@@ -1,0 +1,80 @@
+.single-space {
+    background-color: #F1F2F2;
+    /* display: flex;
+    flex-direction: column; */
+    overflow-x: hidden;
+    height: 900px;
+    margin-top: 20px;
+}
+
+.single-space-content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    padding-left: 30px;
+}
+
+.space-details {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 30px;
+    width: 900px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+#sec-1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.space-details img {
+    height: 80px;
+}
+
+.space-details h1 {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 29px;
+    padding-left: 20px;
+}
+
+.space-details p {
+    font-size: 13px;
+}
+
+#not-spaces {
+    padding-left: 80px;
+}
+
+.space-questions {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+    width: 800px;
+    max-width: 800px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.space-questions img {
+    border-radius: 50%;
+    width: 40px;
+    max-height: 100px;
+}
+
+.space-questions h2 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.space-questions p {
+    font-size: 15px;
+}
+
+.edit-space-btn {
+    margin-right: 15px;
+}

@@ -8,13 +8,18 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      ownerId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { model: 'Users' }
+      },
       name: {
         type: Sequelize.STRING(250),
         allowNull: false
       },
       icon: {
         type: Sequelize.STRING(500),
-        allowNull: false
+        allowNull: true
       },
       description: {
         type: Sequelize.STRING(500),

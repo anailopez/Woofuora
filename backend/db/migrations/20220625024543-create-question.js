@@ -13,6 +13,11 @@ module.exports = {
         allowNull: false,
         references: { model: 'Users' }
       },
+      spaceId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: { model: 'Spaces' }
+      },
       title: {
         type: Sequelize.STRING(300),
         allowNull: false

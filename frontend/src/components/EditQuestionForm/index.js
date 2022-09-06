@@ -2,19 +2,27 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkUpdateQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
+import { thunkGetAllSpaces } from '../../store/spaces';
+
 
 const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
     const questionsArr = useSelector((state) => Object.values(state.allQuestions));
     const question = questionsArr.find(question => question.id === questionId);
+    const allSpaces = useSelector(state => Object.values(state.spaces));
 
     const [title, setTitle] = useState(question.title);
     const [description, setDescription] = useState(question.description || '');
     const [image, setImage] = useState(question.image || '');
+    const [space, setSpace] = useState(question.spaceId || '');
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const ownerId = useSelector(state => state.session.user.id);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(thunkGetAllSpaces())
+    }, [dispatch]);
 
     useEffect(() => {
         const errors = [];
@@ -38,13 +46,14 @@ const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
         const updatedQuestion = {
             questionId: questionId,
             ownerId: ownerId,
+            spaceId: space,
             title,
             description,
             image,
             updatedAt: new Date()
         };
 
-        console.log(updatedQuestion);
+        // console.log(updatedQuestion);
 
         const question = await dispatch(thunkUpdateQuestion(updatedQuestion));
 
@@ -100,6 +109,12 @@ const EditQuestionForm = ({ questionId, showEditForm, setShowEditForm }) => {
                             placeholder='Image URL'
                             name='image'
                         />
+                        <label htmlFor='space'>Add this question to a space (optional)</label>
+                        <select onChange={(e) => setSpace(e.target.value)}>
+                            {allSpaces && allSpaces.map(space => (
+                                <option value={space.id}>{space.name}</option>
+                            ))}
+                        </select>
                         <button type='submit'>Update your question!</button>
                     </form>
                 </>

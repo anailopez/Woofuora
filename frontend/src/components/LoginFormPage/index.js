@@ -38,18 +38,20 @@ function LoginFormPage() {
         <div className='login-form-page'>
             <div className='login-form-box'>
                 <div className='logo'>
-                    <img src={`${logo}`} alt="logo" />
+                    {/* <img src={`${logo}`} alt="logo" /> */}
+                    <h1>Woofuora</h1>
+                    <p>A place where dogs can come together and better understand the world</p>
                 </div>
                 <div className='login-signup'>
                     <div className='signup-here'>
-                        <p>Don't have a Woofoura account?</p>
-                        <Link to='/signup'>
-                            <button>Sign up here!</button>
-                        </Link>
+                        {/* <p>By continuing you indicate that you agree to Woofuora's Terms of Service and Privacy Policy</p> */}
+
                         <div className='demo-user'>
-                            <p>Or</p>
-                            <button onClick={demoLogin}>Demo user login</button>
+                            <button onClick={demoLogin}><i className="fa-solid fa-paw" />Continue as demo user</button>
                         </div>
+                        <Link to='/signup'>
+                            <button>Sign up here</button>
+                        </Link>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <ul>
@@ -59,7 +61,7 @@ function LoginFormPage() {
                             <div className='title'>
                                 <label>Login</label>
                             </div>
-                            <label>
+                            <label id='inputs'>
                                 Username or Email
                                 <input
                                     type="text"
@@ -68,7 +70,7 @@ function LoginFormPage() {
                                     required
                                 />
                             </label>
-                            <label>
+                            <label id='inputs'>
                                 Password
                                 <input
                                     type="password"
@@ -78,11 +80,19 @@ function LoginFormPage() {
                                 />
                             </label>
                         </div>
-                        <button type="submit">Log In</button>
+                        <button id='login-btn' type="submit">Log In</button>
                     </form>
                 </div>
             </div>
-            <Footer />
+            <div className='login-footer'>
+                <p>Created by Anai Amy Lopez</p>
+                <a href={"https://github.com/anailopez"}>
+                    <i className="fa-brands fa-github" />
+                </a>
+                <a href={"https://www.linkedin.com/in/anai-lopez-326289241/"}>
+                    <i className="fa-brands fa-linkedin" />
+                </a>
+            </div>
         </div>
     );
 }

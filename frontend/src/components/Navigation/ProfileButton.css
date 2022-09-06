@@ -3,3 +3,10 @@
     flex-direction: column;
     margin-top: 40;
 }
+
+#user-button {
+    background-color: #5C8DC2;
+    border-radius: 50%;
+    border: 1px solid #5C8DC2;
+    color: #EAECEE;
+}

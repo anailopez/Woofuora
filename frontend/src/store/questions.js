@@ -50,7 +50,7 @@ export const thunkGetAllQuestions = () => async (dispatch) => {
 };
 
 export const thunkAddQuestion = (question) => async (dispatch) => {
-    const { ownerId, title, description, image } = question;
+    const { ownerId, spaceId, title, description, image } = question;
     const response = await csrfFetch('/api/questions', {
         method: "POST",
         headers: {
@@ -58,6 +58,7 @@ export const thunkAddQuestion = (question) => async (dispatch) => {
         },
         body: JSON.stringify({
             ownerId,
+            spaceId,
             title,
             description,
             image

@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import HomePage from "./components/HomePage";
 import UserProfile from "./components/UserProfile";
+import SingleSpace from "./components/SingleSpace/SingleSpace";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,11 +25,17 @@ function App() {
           <Route exact path="/login">
             <LoginFormPage />
           </Route>
-          <Route exact path="/signup">
+          {/* <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route exact path="/user-profile">
+          </Route> */}
+          {/* <Route exact path="/user-profile">
             <UserProfile />
+          </Route> */}
+          <Route exact path='/spaces/:spaceId'>
+            <SingleSpace isLoaded={isLoaded} />
+          </Route>
+          <Route>
+            <LoginFormPage />
           </Route>
         </Switch>
       )}

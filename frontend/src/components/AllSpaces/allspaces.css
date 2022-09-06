@@ -1,0 +1,29 @@
+#all-spaces-list {
+    list-style: none;
+}
+
+#all-spaces-list li {
+    padding-bottom: 8px;
+    margin-left: -20px;
+    color: #636466;
+    text-decoration: none;
+}
+
+#all-spaces-list a {
+    text-decoration: none;
+}
+
+#all-spaces-list li:hover {
+    background-color: #E4E6E6;
+    padding-left: 20px;
+}
+
+#create-space-btn {
+    border: none;
+    color: #636466;
+}
+
+#create-space-btn:hover {
+    background-color: #E4E6E6;
+    padding: 10px;
+}
