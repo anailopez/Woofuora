@@ -38,7 +38,9 @@ function LoginFormPage() {
         <div className='login-form-page'>
             <div className='login-form-box'>
                 <div className='logo'>
-                    <img src={`${logo}`} alt="logo" />
+                    {/* <img src={`${logo}`} alt="logo" /> */}
+                    <h1>Woofuora</h1>
+                    <p>A place where dogs can come together and better understand the world</p>
                 </div>
                 <div className='login-signup'>
                     <div className='signup-here'>
@@ -48,7 +50,7 @@ function LoginFormPage() {
                             <button onClick={demoLogin}><i className="fa-solid fa-paw" />Continue as demo user</button>
                         </div>
                         <Link to='/signup'>
-                            <button>Sign up here!</button>
+                            <button>Sign up here</button>
                         </Link>
                     </div>
                     <form onSubmit={handleSubmit}>

@@ -34,6 +34,9 @@ function App() {
           <Route exact path='/spaces/:spaceId'>
             <SingleSpace />
           </Route>
+          <Route>
+            <LoginFormPage />
+          </Route>
         </Switch>
       )}
     </div>

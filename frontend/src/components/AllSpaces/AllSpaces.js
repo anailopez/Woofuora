@@ -102,7 +102,7 @@ const AllSpaces = () => {
         <div className='all-spaces'>
             <button id='create-space-btn' onClick={openSpaceModal}><i className="fa-solid fa-plus" />Create Space</button>
             <Modal isOpen={showSpaceForm} style={styling}>
-                <button onClick={closeSpaceModal}><i className="fa-solid fa-x" /></button>
+                <button id='modal-button' onClick={closeSpaceModal}><i className="fa-solid fa-x" /></button>
                 <ul>
                     {validationErrors.length > 0 && validationErrors.map(error => (
                         <li key={error}>{error}</li>
@@ -134,7 +134,7 @@ const AllSpaces = () => {
                         value={description}
                         name='description'
                     />
-                    <button>Create</button>
+                    <button id='modal-button'>Create</button>
                 </form>
             </Modal>
             <ul id='all-spaces-list'>

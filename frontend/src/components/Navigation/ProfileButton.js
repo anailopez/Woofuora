@@ -30,26 +30,27 @@ function ProfileButton({ user }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        redirect();
     };
 
     const redirect = () => {
-        const path = '/user-profile';
+        const path = '/login';
         history.push(path);
     }
 
     return (
         <>
-            <button onClick={openMenu}>
+            <button id="user-button" onClick={openMenu}>
                 <i className="fa-solid fa-dog" />
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">
                     <li>{user.username}</li>
-                    <li>
+                    {/* <li>
                         <button onClick={redirect}>View Profile</button>
-                    </li>
+                    </li> */}
                     <li>
-                        <button onClick={logout}>Log Out</button>
+                        <button id='modal-button' onClick={logout}>Log Out</button>
                     </li>
                 </ul>
             )}

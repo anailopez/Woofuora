@@ -14,8 +14,7 @@ const HomePage = ({ isLoaded }) => {
     const sessionUser = useSelector(state => state.session?.user);
     const [showPostForm, setShowPostForm] = useState(false);
     const users = useSelector(state => Object.values(state.session?.users));
-    const currentUser = users.find(user => user.id === sessionUser.id);
-    console.log(typeof (42.1))
+    const currentUser = users.find(user => user.id === sessionUser?.id);
 
     Modal.setAppElement('body');
 
@@ -70,7 +69,7 @@ const HomePage = ({ isLoaded }) => {
                                     <Modal isOpen={showPostForm} style={questionFormStyle}>
                                         <h2>What's your question?</h2>
                                         <CreateQuestionForm showPostForm={showPostForm} closeQuestionModal={closeQuestionModal} />
-                                        <button onClick={closeQuestionModal}>Cancel question</button>
+                                        {/* <button onClick={closeQuestionModal}>Cancel question</button> */}
                                     </Modal >
                                 </div>
                             </div>

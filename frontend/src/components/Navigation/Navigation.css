@@ -2,15 +2,17 @@
     background-color: white;
     display: flex;
     flex-direction: row;
-    /* max-height: 70px; */
+    height: 65px;
     align-items: center;
     justify-content: space-between;
     padding-left: 40px;
+    padding-right: 40px;
     position: relative;
     margin-top: -12px;
     margin-left: -10px;
     margin-right: -10px;
-    box-shadow: 2px -3px 10px 1px gray;
+    box-shadow: 2px -3px 10px 1px #EBECEC;
+    border-bottom: 1px solid #EAEBEB;
 }
 
 .links {
@@ -28,4 +30,19 @@
 
 .navbar-icon {
     max-height: 40px;
+}
+
+#woof {
+    color: #B92B27;
+    font-family: 'Le Monde Courrier';
+    font-weight: 900;
+}
+
+#woof:hover {
+    cursor: pointer;
+    color: #CE6B68;
+}
+
+a {
+    text-decoration: none;
 }

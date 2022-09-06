@@ -19,10 +19,10 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
         const errors = [];
 
         if (!title.length) {
-            errors.push('Please make a title for your question!')
+            errors.push('Please create a title for your question')
         }
         if (image.length > 0 && !image.match(/\.(jpg|jpeg|png|gif)$/)) {
-            errors.push('Please enter a valid image URL!');
+            errors.push('Please enter a valid image URL');
         }
 
         setValidationErrors(errors);
@@ -35,7 +35,7 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
 
         if (validationErrors.length > 0) {
             await dispatch(thunkGetAllQuestions());
-            return alert("Oops! Please fix errors with your question!");
+            return alert("Please fix errors with your question");
         }
 
         const newQuestion = {
@@ -102,7 +102,9 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
                             name='image'
                             className='image-input'
                         />
-                        <button className='post-button' type='submit'>Post your question!</button>
+                        <button id='modal-button' className='post-button' type='submit'>Post question</button>
+                        <br />
+                        <button id='modal-button' onClick={closeQuestionModal}>Cancel question</button>
                     </form>
                 </div>
             </div>

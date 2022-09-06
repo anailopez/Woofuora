@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { thunkGetAllAnswers } from '../../store/answers';
 import { thunkGetAllAnswers, thunkDeleteAnswer, thunkUpdateAnswer, thunkAddAnswer } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkCreateReply, thunkGetAllReplies } from '../../store/replies';

@@ -68,7 +68,7 @@ const AllQuestions = () => {
                         {question.User && question.ownerId === userId && !showEditForm && (
                             <div className='edit-delete-buttons'>
                                 <button id={buttonId} onClick={(e) => { setShowEditForm(true); setButtonId(question.id) }}>
-                                    <i className="fa-solid fa-pen" /> Edit Question
+                                    {/* <i className="fa-solid fa-pen" /> Edit Question */}
                                 </button>
                                 <button onClick={() => {
                                     handleDelete(question);
