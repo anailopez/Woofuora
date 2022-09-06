@@ -8,6 +8,7 @@ import { thunkEditSpace } from '../../store/spaces';
 import Modal from 'react-modal';
 import Navigation from '../Navigation';
 import AllSpaces from '../AllSpaces/AllSpaces.js';
+import './singlespace.css';
 
 const SingleSpace = () => {
     const userId = useSelector(state => state.session?.user?.id);
@@ -117,11 +118,13 @@ const SingleSpace = () => {
 
 
     return (
-        <>
-            <Navigation />
-            <AllSpaces />
+        <div className='single-space'>
+            <div className='navbar-single'>
+                <Navigation />
+            </div>
             {space && (
-                <>
+                <div className='single-space-content'>
+                    <AllSpaces />
                     {space.ownerId === userId && (
                         <>
                             <button onClick={openEditModal}>Edit space</button>
@@ -162,24 +165,32 @@ const SingleSpace = () => {
                             <button onClick={() => handleDelete(space.id)}>Delete space</button>
                         </>
                     )}
-                    <div>
-                        <img src={`${space.icon}`}></img>
-                        <h1>{space.name}</h1>
-                        <p>{space.description}</p>
+                    <div id='not-spaces'>
+                        <div className='space-details'>
+                            <div id='sec-1'>
+                                <img src={`${space.icon}`}></img>
+                                <h1>{space.name}</h1>
+                            </div>
+                            <div>
+                                <p>{space.description}</p>
+                            </div>
+                        </div>
                         <div>
                             {filteredQuestions && filteredQuestions.map(question => (
-                                <>
-                                    <img src={`${question.User.icon}`}></img>
-                                    <h3>{question.User.username}</h3>
+                                <div className='space-questions'>
+                                    <div className='user-display'>
+                                        <img src={`${question.User.icon}`}></img>
+                                        <h3>{question.User.username}</h3>
+                                    </div>
                                     <h2>{question.title}</h2>
                                     <p>{question.description}</p>
-                                </>
+                                </div>
                             ))}
                         </div>
                     </div>
-                </>
+                </div>
             )}
-        </>
+        </div>
     )
 }
 
