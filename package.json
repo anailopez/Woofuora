@@ -1,7 +1,7 @@
 {
   "name": "woofoura",
   "version": "1.0.0",
-  "description": "Woofoura, a Quora clone, is a website where dogs can ask questions, receive answers to their questions, and post answers to other pups' questions.",
+  "description": "Woofuora, a Quora clone, is a website where dogs can ask questions, receive answers to their questions, and post answers to other pups' questions.",
   "main": "index.js",
   "scripts": {
     "heroku-postbuild": "npm run build --prefix frontend",
@@ -14,13 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anailopez/Woofoura.git"
+    "url": "git+https://github.com/anailopez/Woofuora.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anailopez/Woofoura/issues"
+    "url": "https://github.com/anailopez/Woofuora/issues"
   },
-  "homepage": "https://github.com/anailopez/Woofoura#readme"
+  "homepage": "https://github.com/anailopez/Woofuora#readme",
+  "dependencies": {
+    "sequelize": "^6.21.4",
+    "sequelize-cli": "^6.4.1"
+  }
 }
