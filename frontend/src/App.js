@@ -25,14 +25,14 @@ function App() {
           <Route exact path="/login">
             <LoginFormPage />
           </Route>
-          <Route exact path="/signup">
+          {/* <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route exact path="/user-profile">
+          </Route> */}
+          {/* <Route exact path="/user-profile">
             <UserProfile />
-          </Route>
+          </Route> */}
           <Route exact path='/spaces/:spaceId'>
-            <SingleSpace />
+            <SingleSpace isLoaded={isLoaded} />
           </Route>
           <Route>
             <LoginFormPage />

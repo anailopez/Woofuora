@@ -18,6 +18,11 @@ html {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+#modal-button:hover {
+    background-color: #1A5AFF;
+    cursor: pointer;
+}
+
 button:hover {
     cursor: pointer;
 }
@@ -31,7 +36,8 @@ h4 {
 }
 
 input,
-textarea {
+textarea,
+select {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #DEE0E1;

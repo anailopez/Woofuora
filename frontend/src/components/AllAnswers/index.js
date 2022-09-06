@@ -182,13 +182,13 @@ const AllAnswers = ({ question }) => {
                                         <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
                                             <i className="fa-solid fa-trash-can" /> Delete answer
                                         </button>
-                                        <button><i className="fa-solid fa-pen" /> Edit Answer</button>
+                                        {/* <button><i className="fa-solid fa-pen" /> Edit Answer</button> */}
                                     </div>
                                 )}
                                 {answer.userId !== userId && (
                                     <div className='add-reply-area'>
                                         {showReplyBtn && (
-                                            <button onClick={() => { setShowReplyInput(!showReplyInput); setCurrentAnswer(answer.id); setShowReplyBtn(false) }}>Reply</button>
+                                            <button onClick={() => { setShowReplyInput(true); setCurrentAnswer(answer.id); setShowReplyBtn(false) }}>Reply</button>
                                         )}
                                         {showReplyInput && answer.id === currentAnswer && (
                                             <div className='reply-input-area'>
@@ -199,6 +199,7 @@ const AllAnswers = ({ question }) => {
                                                     value={content}
                                                 />
                                                 <button onClick={() => handleReply(content, answer.id, userId)}>Reply</button>
+                                                <button onClick={() => { setShowReplyInput(false); setShowReplyBtn(true) }}>Cancel</button>
                                             </div>
                                         )}
                                     </div>

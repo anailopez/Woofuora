@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, Redirect } from 'react-router-dom';
 import { thunkGetAllSpaces } from '../../store/spaces';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkDeleteSpace } from '../../store/spaces';
@@ -8,11 +8,15 @@ import { thunkEditSpace } from '../../store/spaces';
 import Modal from 'react-modal';
 import Navigation from '../Navigation';
 import AllSpaces from '../AllSpaces/AllSpaces.js';
+import SingleQuestion from '../SingleQuestion/SingleQuestion';
+import CreateQuestionForm from '../CreateQuestionForm';
 import './singlespace.css';
+import '../AllQuestions/AllQuestions.css';
 
-const SingleSpace = () => {
-    const userId = useSelector(state => state.session?.user?.id);
+const SingleSpace = ({isLoaded}) => {
     const { spaceId } = useParams();
+    const sessionUser = useSelector(state => state.session?.user);
+    const userId = useSelector(state => state.session?.user?.id);
     const spaces = useSelector(state => Object.values(state.spaces));
     const space = spaces.find(space => space.id === parseInt(spaceId));
     const questions = useSelector(state => Object.values(state.allQuestions));
@@ -22,6 +26,7 @@ const SingleSpace = () => {
     const [description, setDescription] = useState('');
     const [icon, setIcon] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
+    const [showPostForm, setShowPostForm] = useState(false);
 
     Modal.setAppElement('body');
 
@@ -105,6 +110,14 @@ const SingleSpace = () => {
         setEditSpaceForm(false)
     }
 
+    function openQuestionModal() {
+        setShowPostForm(true)
+    }
+
+    function closeQuestionModal() {
+        setShowPostForm(false)
+    }
+
     const styling = {
         content: {
             top: '50%',
@@ -119,76 +132,83 @@ const SingleSpace = () => {
 
     return (
         <div className='single-space'>
-            <div className='navbar-single'>
-                <Navigation />
-            </div>
-            {space && (
-                <div className='single-space-content'>
-                    <AllSpaces />
-                    {space.ownerId === userId && (
-                        <>
-                            <button onClick={openEditModal}>Edit space</button>
-                            <Modal isOpen={showEditSpaceForm} style={styling}>
-                                <div>
-                                    <h2>Edit this space</h2>
-                                    <ul>
-                                        {validationErrors.length > 0 && validationErrors.map(error => (
-                                            <li key={error}>{error}</li>
-                                        ))}
-                                    </ul>
-                                    <form onSubmit={handleEdit}>
-                                        <label htmlFor='name'>Name*</label>
-                                        <input
-                                            type='text'
-                                            onChange={(e) => setName(e.target.value)}
-                                            value={name}
-                                            name='name'
-                                        />
-                                        <label htmlFor='icon'>Icon URL</label>
-                                        <input
-                                            type='text'
-                                            onChange={(e) => setIcon(e.target.value)}
-                                            value={icon}
-                                            name='icon'
-                                        />
-                                        <label htmlFor='description'>Brief description</label>
-                                        <input
-                                            type='text'
-                                            onChange={(e) => setDescription(e.target.value)}
-                                            value={description}
-                                            name='description'
-                                        />
-                                        <button>Confirm edit</button>
-                                    </form>
-                                </div>
-                            </Modal>
-                            <button onClick={() => handleDelete(space.id)}>Delete space</button>
-                        </>
-                    )}
-                    <div id='not-spaces'>
-                        <div className='space-details'>
-                            <div id='sec-1'>
-                                <img src={`${space.icon}`}></img>
-                                <h1>{space.name}</h1>
-                            </div>
-                            <div>
-                                <p>{space.description}</p>
-                            </div>
-                        </div>
-                        <div>
-                            {filteredQuestions && filteredQuestions.map(question => (
-                                <div className='space-questions'>
-                                    <div className='user-display'>
-                                        <img src={`${question.User.icon}`}></img>
-                                        <h3>{question.User.username}</h3>
+            {sessionUser ? (
+                <>
+                    <Navigation isLoaded={isLoaded} />
+                    {space && (
+                        <div className='single-space-content'>
+                            <AllSpaces />
+                            {space.ownerId === userId && (
+                                <>
+                                    <button onClick={openEditModal}>Edit space</button>
+                                    <Modal isOpen={showEditSpaceForm} style={styling}>
+                                        <div>
+                                            <h2>Edit this space</h2>
+                                            <ul>
+                                                {validationErrors.length > 0 && validationErrors.map(error => (
+                                                    <li key={error}>{error}</li>
+                                                ))}
+                                            </ul>
+                                            <form onSubmit={handleEdit}>
+                                                <label htmlFor='name'>Name*</label>
+                                                <input
+                                                    type='text'
+                                                    onChange={(e) => setName(e.target.value)}
+                                                    value={name}
+                                                    name='name'
+                                                />
+                                                <label htmlFor='icon'>Icon URL</label>
+                                                <input
+                                                    type='text'
+                                                    onChange={(e) => setIcon(e.target.value)}
+                                                    value={icon}
+                                                    name='icon'
+                                                />
+                                                <label htmlFor='description'>Brief description</label>
+                                                <input
+                                                    type='text'
+                                                    onChange={(e) => setDescription(e.target.value)}
+                                                    value={description}
+                                                    name='description'
+                                                />
+                                                <button>Confirm edit</button>
+                                            </form>
+                                        </div>
+                                    </Modal>
+                                    <button onClick={() => handleDelete(space.id)}>Delete space</button>
+                                </>
+                            )}
+                            <div id='not-spaces'>
+                                <div className='space-details'>
+                                    <div id='sec-1'>
+                                        <img src={`${space.icon}`}></img>
+                                        <h1>{space.name}</h1>
                                     </div>
-                                    <h2>{question.title}</h2>
-                                    <p>{question.description}</p>
+                                    <div>
+                                        <p>{space.description}</p>
+                                    </div>
                                 </div>
-                            ))}
+                                <div>
+                                    {filteredQuestions && filteredQuestions.map(question => (
+                                        <SingleQuestion question={question} />
+                                    ))}
+                                    {!filteredQuestions.length > 0 && (
+                                        <>
+                                            <h2>This space currently has no questions</h2>
+                                            <button id='modal-button' onClick={openQuestionModal}>Post a question</button>
+                                            <Modal isOpen={showPostForm} style={styling}>
+                                                <h2>What's your question?</h2>
+                                                <CreateQuestionForm showPostForm={showPostForm} closeQuestionModal={closeQuestionModal} />
+                                            </Modal>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    )}
+                </>
+            ) : (
+                <Redirect to='/login' />
             )}
         </div>
     )

@@ -2,18 +2,25 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkAddQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
+import { thunkGetAllSpaces } from '../../store/spaces';
 import './CreateQuestion.css';
 
 const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('');
+    const [space, setSpace] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const allSpaces = useSelector(state => Object.values(state.spaces));
 
     const ownerId = useSelector(state => state.session.user.id);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(thunkGetAllSpaces())
+    }, [dispatch]);
 
     useEffect(() => {
         const errors = [];
@@ -40,6 +47,7 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
 
         const newQuestion = {
             ownerId: ownerId,
+            spaceId: space,
             title,
             description,
             image,
@@ -102,6 +110,12 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
                             name='image'
                             className='image-input'
                         />
+                        <label htmlFor='space'>Add this question to a space (optional)</label>
+                        <select onChange={(e) => setSpace(e.target.value)}>
+                            {allSpaces && allSpaces.map(space => (
+                                <option value={space.id}>{space.name}</option>
+                            ))}
+                        </select>
                         <button id='modal-button' className='post-button' type='submit'>Post question</button>
                         <br />
                         <button id='modal-button' onClick={closeQuestionModal}>Cancel question</button>
