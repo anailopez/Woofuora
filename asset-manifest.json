@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Woofuora/static/css/main.409136fb.css",
+    "main.js": "/Woofuora/static/js/main.a89f8b74.js",
+    "index.html": "/Woofuora/index.html",
+    "main.409136fb.css.map": "/Woofuora/static/css/main.409136fb.css.map",
+    "main.a89f8b74.js.map": "/Woofuora/static/js/main.a89f8b74.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.409136fb.css",
+    "static/js/main.a89f8b74.js"
+  ]
+}
