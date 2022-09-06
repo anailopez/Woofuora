@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllReplies, thunkDeleteReply } from '../../store/replies';
+import './allreplies.css';
 
 const AllReplies = ({ answer }) => {
     const userId = useSelector(state => state.session?.user?.id);
@@ -17,8 +18,10 @@ const AllReplies = ({ answer }) => {
         <div className='all-replies'>
             {replies && filteredReplies.map(reply => (
                 <>
-                    <img src={reply.User?.icon} alt='user icon'></img>
-                    <h5>{reply.User?.username}</h5>
+                    <div id='reply-user-info'>
+                        <img src={reply.User?.icon} alt='user icon'></img>
+                        <h5>{reply.User?.username}</h5>
+                    </div>
                     <p>{reply.content}</p>
                     {reply.userId === userId && (
                         <button onClick={() => dispatch(thunkDeleteReply(reply.id))}>Delete reply</button>

@@ -11,6 +11,7 @@ const AllQuestions = () => {
     const [showAnswers, setShowAnswers] = useState(false);
     const [buttonId, setButtonId] = useState(null);
     const [answerButtonId, setAnswerButtonId] = useState(null);
+    // let totalAnswers = 0;
 
     const dispatch = useDispatch();
 
@@ -47,7 +48,7 @@ const AllQuestions = () => {
                             {question.User.icon && (
                                 <img src={question.User.icon} alt='icon' />
                             )}
-                            <h3>{question.User.username} asks:</h3>
+                            <h3>{question.User.username}</h3>
                         </div>
                     )}
                     <div className='question-content'>
@@ -81,16 +82,11 @@ const AllQuestions = () => {
                         )}
                     </div>
                     <div className='allanswers-content'>
-                        {!showAnswers && (
-                            <button id='see-answers-btn' onClick={() => { setShowAnswers(true); setAnswerButtonId(question.id) }}>
-                                <i className="fa-regular fa-comment" />
-                            </button>
-                        )}
+                        <button id='see-answers-btn' onClick={() => { setShowAnswers(!showAnswers); setAnswerButtonId(question.id) }}>
+                            <i className="fa-regular fa-comment" />
+                        </button>
                         {showAnswers && answerButtonId === question.id && (
                             <>
-                                <button onClick={() => setShowAnswers(false)}>
-                                    <i className="fa-regular fa-comment" />
-                                </button>
                                 <AllAnswers question={question} />
                             </>
                         )}

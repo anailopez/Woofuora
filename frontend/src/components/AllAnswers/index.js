@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkGetAllAnswers } from '../../store/answers';
-import { thunkDeleteAnswer, thunkUpdateAnswer } from '../../store/answers';
+// import { thunkGetAllAnswers } from '../../store/answers';
+import { thunkGetAllAnswers, thunkDeleteAnswer, thunkUpdateAnswer, thunkAddAnswer } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkCreateReply, thunkGetAllReplies } from '../../store/replies';
 import Modal from 'react-modal';
@@ -18,7 +18,10 @@ const AllAnswers = ({ question }) => {
     const [content, setContent] = useState('');
     const [currentAnswer, setCurrentAnswer] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
-
+    const [body, setBody] = useState('');
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [answerErrors, setAnswerErrors] = useState([]);
+    const [showReplyBtn, setShowReplyBtn] = useState(true);
 
     Modal.setAppElement('body');
 
@@ -81,10 +84,58 @@ const AllAnswers = ({ question }) => {
             setCurrentAnswer('');
             setValidationErrors([]);
             setShowReplyInput(false);
+            setShowReplyBtn(true);
         }
 
         await dispatch(thunkGetAllReplies());
     }
+
+    useEffect(() => {
+        const errors = [];
+
+        if (!body.length) {
+            errors.push('Cannot submit an empty answer!');
+        }
+        if (body.length > 500) {
+            errors.push('Comment cannot exceed 500 characters');
+        }
+        // if (image.length > 0 && !image.match(/\.(jpg|jpeg|png|gif)$/)) {
+        //     errors.push('Please submit a valid image!');
+        // }
+
+        setAnswerErrors(errors);
+    }, [body]);
+
+    const handleAnswer = async (e) => {
+        e.preventDefault();
+
+        setHasSubmitted(true);
+
+        if (answerErrors.length > 0) {
+            // await dispatch(thunkGetAllAnswers());
+            return alert("Please fix errors with your answer");
+        }
+
+        const newAnswer = {
+            userId: userId,
+            questionId: question.id,
+            body,
+            // image,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+
+        const answer = await dispatch(thunkAddAnswer(newAnswer));
+
+        if (answer) {
+            setBody('');
+            // setImage('');
+            setAnswerErrors([]);
+            setHasSubmitted(false);
+        }
+
+        await dispatch(thunkGetAllAnswers());
+    };
 
     return (
         <div className='all-answers'>
@@ -96,18 +147,18 @@ const AllAnswers = ({ question }) => {
                     {!answers && (
                         <p>Be the first to answer this question!</p>
                     )}
-                    <div className='leave-answer-button'>
+                    <div className='leave-answer-area'>
+                        {hasSubmitted && answerErrors.length > 0 && answerErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
                         <input
                             type='text'
-                            placeholder='Add a comment...'
-                            onClick={openAnswerModal}
+                            placeholder='Add an answer...'
+                            onChange={(e) => setBody(e.target.value)}
+                            value={body}
                         />
-                        {/* <button onClick={openAnswerModal}>Leave an answer to this question!</button> */}
+                        <button id='add-comment-btn' onClick={handleAnswer}>Add answer</button>
                     </div>
-                    <Modal isOpen={showAnswerForm} style={styling}>
-                        <CreateAnswerForm question={question} closeAnswerModal={closeAnswerModal} />
-                        <button onClick={closeAnswerModal}>Cancel answer</button>
-                    </Modal>
                 </>
             )}
             {answersArr && answersArr.map(answer => (
@@ -119,7 +170,7 @@ const AllAnswers = ({ question }) => {
                                     {answer.User.icon && (
                                         <img src={answer.User.icon} alt="icon" />
                                     )}
-                                    <h4>{answer.User.username} answered:</h4>
+                                    <h4>{answer.User.username}</h4>
                                 </div>
                             )}
                             <div className='answer-content'>
@@ -130,16 +181,18 @@ const AllAnswers = ({ question }) => {
                                 {answer.userId === userId && (
                                     <div>
                                         <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
-                                            <i className="fa-solid fa-trash-can" /> Delete your answer
+                                            <i className="fa-solid fa-trash-can" /> Delete answer
                                         </button>
-                                        <button>Edit Answer</button>
+                                        <button><i className="fa-solid fa-pen" /> Edit Answer</button>
                                     </div>
                                 )}
                                 {answer.userId !== userId && (
-                                    <>
-                                        <button onClick={() => { setShowReplyInput(!showReplyInput); setCurrentAnswer(answer.id) }}>Reply</button>
+                                    <div className='add-reply-area'>
+                                        {showReplyBtn && (
+                                            <button onClick={() => { setShowReplyInput(!showReplyInput); setCurrentAnswer(answer.id); setShowReplyBtn(false) }}>Reply</button>
+                                        )}
                                         {showReplyInput && answer.id === currentAnswer && (
-                                            <div>
+                                            <div className='reply-input-area'>
                                                 <input
                                                     placeholder='Add a reply...'
                                                     type='text'
@@ -149,7 +202,7 @@ const AllAnswers = ({ question }) => {
                                                 <button onClick={() => handleReply(content, answer.id, userId)}>Reply</button>
                                             </div>
                                         )}
-                                    </>
+                                    </div>
                                 )}
 
                             </div>

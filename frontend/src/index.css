@@ -1,7 +1,8 @@
 /* TODO Add site wide styles */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-:root {
+:root,
+html {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
