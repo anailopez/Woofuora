@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Footer from '../Footer';
 import './LoginForm.css';
-import logo from '../../images/Woofoura.png';
 
 
 function LoginFormPage() {

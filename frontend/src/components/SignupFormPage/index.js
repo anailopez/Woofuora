@@ -35,7 +35,7 @@ function SignupFormPage() {
     return (
         <div className="signup-form-box">
             <div className='signup-here'>
-                <p>Already have a Woofoura account?</p>
+                <p>Already have a Woofuora account?</p>
                 <Link to='/login'>
                     <button>Log in here!</button>
                 </Link>

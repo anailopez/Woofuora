@@ -11,7 +11,7 @@ After cloning Woofuora into your desired directory:
 * To set up the database:
 > * In the backend directory, run 'npx dotenv sequelize db:create' to create the database
 > * In the backend directory, run 'npx dotenv sequelize db:migrate' and 'npx dotenv sequelize db:seed:all' to add all models and seeders into your database
-* To run the app in development mode: 
+* To run the app in development mode:
 > * In one terminal, cd into the backend directory and run 'npm start'
 > * In another terminal, cd into the frontend directory and run 'npm start'
 > * With both terminals running 'npm start', navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Woofuora!
@@ -45,7 +45,7 @@ On the '/signup' page, new users can fill out a form to create an account upon s
 
 
 ## Home Page
-Once a user has logged in or signed up, they are directed to Woofoura's homepage, where they can see all of the questions made by any user, including themselves, starting from the most recent question posted. Here the user can post a new question, as well as made edits to or delete said question. From this page, users can also leave answers to any other user's question, as well as delete said answer.
+Once a user has logged in or signed up, they are directed to Woofuora's homepage, where they can see all of the questions made by any user, including themselves, starting from the most recent question posted. Here the user can post a new question, as well as made edits to or delete said question. From this page, users can also leave answers to any other user's question, as well as delete said answer.
 
 ![homepage](https://user-images.githubusercontent.com/96565654/177238376-2898c729-7c8a-4636-b568-decc98d6d90e.png)
 
@@ -83,7 +83,7 @@ From the user profile page, the logged-in user is able to see all of their poste
 
 
 ## Technical Implementation Details
-In order to have the homepage render the 'AllQuestions' component from most recently updated question, I implimented an array called 'orderedQuestions' in my questions state, which stores questions in the desired order:  
+In order to have the homepage render the 'AllQuestions' component from most recently updated question, I implimented an array called 'orderedQuestions' in my questions state, which stores questions in the desired order:
 ```
 const initialState = { orderedQuestions: [] };
 
@@ -123,4 +123,4 @@ const questionsArr = useSelector(state => state.questionDetail.questionsReducer.
 > * Upvotes on questions
 > * Search questions
 > * Reply to answers
-> * Users can follow a topic 
+> * Users can follow a topic
