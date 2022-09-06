@@ -13,7 +13,7 @@ import CreateQuestionForm from '../CreateQuestionForm';
 import './singlespace.css';
 import '../AllQuestions/AllQuestions.css';
 
-const SingleSpace = ({isLoaded}) => {
+const SingleSpace = ({ isLoaded }) => {
     const { spaceId } = useParams();
     const sessionUser = useSelector(state => state.session?.user);
     const userId = useSelector(state => state.session?.user?.id);
@@ -138,46 +138,6 @@ const SingleSpace = ({isLoaded}) => {
                     {space && (
                         <div className='single-space-content'>
                             <AllSpaces />
-                            {space.ownerId === userId && (
-                                <>
-                                    <button onClick={openEditModal}>Edit space</button>
-                                    <Modal isOpen={showEditSpaceForm} style={styling}>
-                                        <div>
-                                            <h2>Edit this space</h2>
-                                            <ul>
-                                                {validationErrors.length > 0 && validationErrors.map(error => (
-                                                    <li key={error}>{error}</li>
-                                                ))}
-                                            </ul>
-                                            <form onSubmit={handleEdit}>
-                                                <label htmlFor='name'>Name*</label>
-                                                <input
-                                                    type='text'
-                                                    onChange={(e) => setName(e.target.value)}
-                                                    value={name}
-                                                    name='name'
-                                                />
-                                                <label htmlFor='icon'>Icon URL</label>
-                                                <input
-                                                    type='text'
-                                                    onChange={(e) => setIcon(e.target.value)}
-                                                    value={icon}
-                                                    name='icon'
-                                                />
-                                                <label htmlFor='description'>Brief description</label>
-                                                <input
-                                                    type='text'
-                                                    onChange={(e) => setDescription(e.target.value)}
-                                                    value={description}
-                                                    name='description'
-                                                />
-                                                <button>Confirm edit</button>
-                                            </form>
-                                        </div>
-                                    </Modal>
-                                    <button onClick={() => handleDelete(space.id)}>Delete space</button>
-                                </>
-                            )}
                             <div id='not-spaces'>
                                 <div className='space-details'>
                                     <div id='sec-1'>
@@ -187,6 +147,45 @@ const SingleSpace = ({isLoaded}) => {
                                     <div>
                                         <p>{space.description}</p>
                                     </div>
+                                    {space.ownerId === userId && (
+                                        <>
+                                            <button id='modal-button' className='edit-space-btn' onClick={openEditModal}>Edit space</button>
+                                            <Modal isOpen={showEditSpaceForm} style={styling}>
+                                                <div>
+                                                    <h2>Edit this space</h2>
+                                                    <ul>
+                                                        {validationErrors.length > 0 && validationErrors.map(error => (
+                                                            <li key={error}>{error}</li>
+                                                        ))}
+                                                    </ul>
+                                                    <form onSubmit={handleEdit}>
+                                                        <label htmlFor='name'>Name*</label>
+                                                        <input
+                                                            type='text'
+                                                            onChange={(e) => setName(e.target.value)}
+                                                            value={name}
+                                                            name='name'
+                                                        />
+                                                        <label htmlFor='icon'>Icon URL (optional)</label>
+                                                        <input
+                                                            type='text'
+                                                            onChange={(e) => setIcon(e.target.value)}
+                                                            value={icon}
+                                                            name='icon'
+                                                        />
+                                                        <label htmlFor='description'>Brief description (optional)</label>
+                                                        <textarea
+                                                            onChange={(e) => setDescription(e.target.value)}
+                                                            value={description}
+                                                            name='description'
+                                                        />
+                                                        <button id='modal-button'>Confirm edit</button>
+                                                    </form>
+                                                </div>
+                                            </Modal>
+                                            <button id='modal-button' onClick={() => handleDelete(space.id)}>Delete space</button>
+                                        </>
+                                    )}
                                 </div>
                                 <div>
                                     {filteredQuestions && filteredQuestions.map(question => (

@@ -19,6 +19,9 @@
     padding: 20px;
     border: 1px solid #CCCCCC;
     margin-bottom: 30px;
+    width: 900px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 #sec-1 {
@@ -70,4 +73,8 @@
 
 .space-questions p {
     font-size: 15px;
+}
+
+.edit-space-btn {
+    margin-right: 15px;
 }

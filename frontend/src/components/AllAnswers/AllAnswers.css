@@ -1,3 +1,4 @@
+
 .all-answers p {
     padding-left: 5%;
 }
@@ -35,6 +36,9 @@
 
 .answer-content p {
     font-size: 15px;
+    width: 600px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .answer-content button {

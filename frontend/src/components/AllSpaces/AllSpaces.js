@@ -79,6 +79,10 @@ const AllSpaces = () => {
 
         setHasSubmitted(true);
 
+        if (validationErrors.length > 0) {
+            return alert('Please fix errors')
+        }
+
         const newSpace = {
             ownerId: userId,
             name: name,
@@ -119,14 +123,14 @@ const AllSpaces = () => {
                         value={name}
                         name='name'
                     />
-                    <label htmlFor='icon'>Icon URL</label>
+                    <label htmlFor='icon'>Icon URL (optional)</label>
                     <input
                         type='text'
                         onChange={(e) => setIcon(e.target.value)}
                         value={icon}
                         name='icon'
                     />
-                    <label htmlFor='description'>Brief description</label>
+                    <label htmlFor='description'>Brief description (optional)</label>
                     <p>Include a few keywords to show people what to expect if they join.</p>
                     <input
                         type='text'

@@ -11,8 +11,8 @@
     max-width: 800px;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
-    /* font-size: 15px;
-    font-weight: 400; */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* .allquestions-content:hover {
