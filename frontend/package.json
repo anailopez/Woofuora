@@ -1,5 +1,4 @@
 {
-  "homepage": "http://anailopez.github.io/Woofuora",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -18,8 +17,6 @@
     "redux-thunk": "^2.4.1"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,7 +38,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
     "redux-logger": "^3.0.6"
   },
   "proxy": "http://localhost:5000"
