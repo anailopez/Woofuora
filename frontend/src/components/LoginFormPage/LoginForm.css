@@ -131,8 +131,8 @@ label {
     align-items: center;
     padding-left: 45px;
     padding-right: 45px;
-    min-width: 700px;
-    max-width: 900px;
+    /* min-width: 700px; */
+    width: 690px;
 }
 
 .fa-brands {

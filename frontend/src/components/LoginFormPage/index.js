@@ -87,7 +87,7 @@ function LoginFormPage() {
                 <a href={"https://github.com/anailopez"}>
                     <i className="fa-brands fa-github" />
                 </a>
-                <a href={"https://www.linkedin.com/in/anai-lopez-326289241/"}>
+                <a href={"https://www.linkedin.com/in/anaiamylopez/"}>
                     <i className="fa-brands fa-linkedin" />
                 </a>
             </div>
