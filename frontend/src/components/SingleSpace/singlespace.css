@@ -1,9 +1,7 @@
 .single-space {
     background-color: #F1F2F2;
-    /* display: flex;
-    flex-direction: column; */
     overflow-x: hidden;
-    height: 900px;
+    height: 1200px;
     margin-top: 20px;
 }
 
@@ -78,3 +76,12 @@
 .edit-space-btn {
     margin-right: 15px;
 }
+
+/* #huntr-react-container-2 { */
+/* display: hidden; */
+/* visibility: hidden; */
+/* } */
+/*
+.ReactModalPortal {
+    visibility: hidden;
+} */
