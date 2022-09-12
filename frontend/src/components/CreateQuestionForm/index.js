@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { thunkAddQuestion } from '../../store/questions';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkGetAllSpaces } from '../../store/spaces';
@@ -15,6 +16,8 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
     const allSpaces = useSelector(state => Object.values(state.spaces));
 
     const ownerId = useSelector(state => state.session.user.id);
+
+    const history = useHistory();
 
     const dispatch = useDispatch();
 
@@ -62,6 +65,7 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
         }
 
         await dispatch(thunkGetAllQuestions());
+        history.push(`/spaces/${space}`);
     };
 
     const reset = () => {
@@ -112,6 +116,7 @@ const CreateQuestionForm = ({ showPostForm, closeQuestionModal }) => {
                         />
                         <label htmlFor='space'>Add this question to a space (optional)</label>
                         <select onChange={(e) => setSpace(e.target.value)}>
+                            <option disabled selected>Select a space</option>
                             {allSpaces && allSpaces.map(space => (
                                 <option value={space.id}>{space.name}</option>
                             ))}
