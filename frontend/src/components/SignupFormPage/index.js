@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import Footer from "../Footer";
-import './SignupForm.css';
 
-function SignupFormPage() {
+function SignupForm({ closeModal }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
@@ -34,12 +32,12 @@ function SignupFormPage() {
 
     return (
         <div className="signup-form-box">
-            <div className='signup-here'>
+            {/* <div className='signup-here'>
                 <p>Already have a Woofuora account?</p>
                 <Link to='/login'>
                     <button>Log in here!</button>
                 </Link>
-            </div>
+            </div> */}
             <div className="signup-form">
                 <form onSubmit={handleSubmit}>
                     <ul>
@@ -88,7 +86,7 @@ function SignupFormPage() {
                             required
                         />
                     </label>
-                    <label>Set Your icon! (optional)</label>
+                    <label>Set your icon (optional)</label>
                     <input
                         type="text"
                         onChange={(e) => setIcon(e.target.value)}
@@ -103,12 +101,12 @@ function SignupFormPage() {
                         placeholder='Bio'
                         rows='5'
                     />
-                    <button type="submit">Sign Up</button>
+                    <button id='modal-button' type="submit">Sign Up</button>
+                    <button id='modal-button' onClick={closeModal}>Cancel</button>
                 </form>
             </div>
-            <Footer />
         </div>
     );
 }
 
-export default SignupFormPage;
+export default SignupForm;

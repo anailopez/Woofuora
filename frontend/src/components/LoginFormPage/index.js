@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Modal from 'react-modal';
+import SignupForm from '../SignupFormPage';
 import './LoginForm.css';
 
 
@@ -12,6 +14,9 @@ function LoginFormPage() {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const [showSignupModal, setShowSignupModal] = useState(false);
+
+    Modal.setAppElement('body');
 
     if (sessionUser) return (
         <Redirect to="/" />
@@ -32,6 +37,25 @@ function LoginFormPage() {
         dispatch(sessionActions.login({ credential: "Goldie", password: 'password' }))
     }
 
+    const styling = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+        },
+    };
+
+    function openModal() {
+        setShowSignupModal(true)
+    };
+
+    function closeModal() {
+        setShowSignupModal(false)
+    };
+
     return (
         <div className='login-form-page'>
             <div className='login-form-box'>
@@ -47,9 +71,13 @@ function LoginFormPage() {
                         <div className='demo-user'>
                             <button onClick={demoLogin}><i className="fa-solid fa-paw" />Continue as demo user</button>
                         </div>
-                        <Link to='/signup'>
-                            <button>Sign up here</button>
-                        </Link>
+                        <button onClick={openModal}>Sign up here</button>
+                        <Modal isOpen={showSignupModal} style={styling}>
+                            <SignupForm closeModal={closeModal} />
+                        </Modal>
+                    </div>
+                    <div>
+
                     </div>
                     <form onSubmit={handleSubmit}>
                         <ul>
