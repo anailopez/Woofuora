@@ -2,7 +2,7 @@
     margin-top: 40px;
 }
 
-.allquestions-content {
+/* .allquestions-content {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     border-radius: 5px;
     overflow-wrap: break-word;
     word-wrap: break-word;
-}
+} */
 
 /* .allquestions-content:hover {
     background-color: #F7F7F7;
@@ -57,10 +57,10 @@
     font-size: 15px;
 }
 
-.question-content img {
+/* .question-content img {
     max-height: 300px;
     max-width: 400px;
-}
+} */
 
 .question-content button {
     font-size: 13px;
@@ -89,4 +89,64 @@
     border-radius: 15px;
     padding: 5px;
     margin-bottom: 10px;
+}
+
+@media screen and (max-width:1000px) {
+    .allquestions-content {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2%;
+        width: 300px;
+        max-width: 800px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .question-content img {
+        max-height: 300px;
+        max-width: 250px;
+    }
+}
+
+@media screen and (min-width:1001px) {
+    .allquestions-content {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2%;
+        width: 800px;
+        max-width: 800px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .question-content img {
+        max-height: 300px;
+        max-width: 400px;
+    }
+}
+
+@media screen and (min-width:1401px) {
+    .allquestions-content {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2%;
+        width: 800px;
+        max-width: 800px;
+        border: 1px solid #CCCCCC;
+        border-radius: 5px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    .question-content img {
+        max-height: 300px;
+        max-width: 400px;
+    }
 }

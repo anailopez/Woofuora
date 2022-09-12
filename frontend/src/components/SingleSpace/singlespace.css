@@ -1,18 +1,18 @@
-.single-space {
+/* .single-space {
     background-color: #F1F2F2;
     overflow-x: hidden;
     height: 1200px;
     margin-top: 20px;
-}
+} */
 
-.single-space-content {
+/* .single-space-content {
     display: flex;
     flex-direction: row;
     margin-top: 40px;
     padding-left: 30px;
-}
+} */
 
-.space-details {
+/* .space-details {
     background-color: white;
     padding: 20px;
     border: 1px solid #CCCCCC;
@@ -20,7 +20,7 @@
     width: 900px;
     overflow-wrap: break-word;
     word-wrap: break-word;
-}
+} */
 
 #sec-1 {
     display: flex;
@@ -77,11 +77,85 @@
     margin-right: 15px;
 }
 
-/* #huntr-react-container-2 { */
-/* display: hidden; */
-/* visibility: hidden; */
-/* } */
-/*
-.ReactModalPortal {
-    visibility: hidden;
-} */
+
+@media screen and (max-width:1000px) {
+    .single-space {
+        background-color: #F1F2F2;
+        overflow-x: hidden;
+        height: 101%;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .single-space-content {
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        padding-left: 30px;
+        margin-right: 85px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .space-details {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 30px;
+        width: 300px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+}
+
+@media screen and (min-width:1001px) {
+    .single-space {
+        background-color: #F1F2F2;
+        overflow-x: hidden;
+        height: 1200px;
+        margin-top: 20px;
+    }
+
+    .single-space-content {
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+        padding-left: 30px;
+    }
+
+    .space-details {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 30px;
+        width: 900px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+}
+
+@media screen and (min-width:1401px) {
+    .single-space {
+        background-color: #F1F2F2;
+        overflow-x: hidden;
+        height: 1200px;
+        margin-top: 20px;
+    }
+
+    .single-space-content {
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+        padding-left: 30px;
+    }
+
+    .space-details {
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #CCCCCC;
+        margin-bottom: 30px;
+        width: 900px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+}
