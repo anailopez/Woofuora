@@ -35,51 +35,44 @@ After cloning Woofuora into your desired directory:
 ## Login Page
 Upon first navigating to Woofuora, a user will be directed to the '/login' page, where they will be prompted to log in, sign up, or access the site using the demo user login.
 
-![login](https://user-images.githubusercontent.com/96565654/177237702-fd808070-034c-41d0-bdae-48fdddc76933.png)
+![login](https://user-images.githubusercontent.com/96565654/189800181-447b637f-f003-48c3-b45b-9d1bcfe4cf3f.png)
 
+### Signup Form
+Additionally on the '/login' page, new users can fill out a form to create an account upon successful submission.
 
-## Signup Page
-On the '/signup' page, new users can fill out a form to create an account upon successful submission.
-
-![signup](https://user-images.githubusercontent.com/96565654/177238240-d8d1cc1c-8093-4aad-810b-38be64e9bbaa.png)
+![signup](https://user-images.githubusercontent.com/96565654/189800238-f4d76e85-a2ff-459f-a6e6-6dba743d0d65.png)
 
 
 ## Home Page
 Once a user has logged in or signed up, they are directed to Woofuora's homepage, where they can see all of the questions made by any user, including themselves, starting from the most recent question posted. Here the user can post a new question, as well as made edits to or delete said question. From this page, users can also leave answers to any other user's question, as well as delete said answer.
 
-![homepage](https://user-images.githubusercontent.com/96565654/177238376-2898c729-7c8a-4636-b568-decc98d6d90e.png)
+![homepage](https://user-images.githubusercontent.com/96565654/189800297-54310acc-4f68-47c8-ae29-1fff075e959b.png)
 
 
 ## Create a new question
 On the homepage, users can click the 'Post a new question' button to render a form. Upon successful submission of the form, users will see their new question appear on as the first question on the homepage.
 
-![create-question](https://user-images.githubusercontent.com/96565654/177238589-1b2be64e-e0ac-4c37-aac3-1fcbeb520043.png)
+![create-question](https://user-images.githubusercontent.com/96565654/189800339-aa12fefd-be18-486d-9abd-89ab707633d6.png)
 
 
 ## Edit or delete a question a question
 On the homepage, users will see 'edit question' and 'delete question' buttons on questions that they have created. Clicking the 'edit question' button will render a form that will allow the user to make changes to their question. Upon successful submission of the form, users will see their newly-edited question appear on as the first question on the homepage.
 
-![edit-question-button](https://user-images.githubusercontent.com/96565654/177238892-de7b31aa-9baf-4ea1-bb40-5732de636445.png)
-
-### Editing a question
-
-![edit-question](https://user-images.githubusercontent.com/96565654/177238931-75a7f7d5-c47f-4e4f-a840-a657e24994bb.png)
+![edit-question](https://user-images.githubusercontent.com/96565654/189800394-b65045b5-99bd-468d-a3a1-3dff3f6c0e40.png)
 
 
 ## Create an answer to a question
 On the homepage, users will see the 'See answers' button under every question. Clicking this button will render all answers belonging to that specific question. If the question does not belong to the logged-in user, they will see the 'Leave an answer to this question' button that, when clicked, will show a form that will allow the user to create a new answer to that question. Upon successful submission of the form, users will see their new answer appear on as the first answer under that question
 
-![view-answers](https://user-images.githubusercontent.com/96565654/177240872-3437760a-f16c-4849-9520-7c3ce166666d.png)
+![create-answer](https://user-images.githubusercontent.com/96565654/189800429-f9ea9b3d-cd8a-4eb0-8cd3-a42cfb3c55b4.png)
 
-![create-answer](https://user-images.githubusercontent.com/96565654/177240939-7563d1a8-f0ec-458c-9cba-376ec666371d.png)
+## Spaces
+Users are given the option to create or delete a space, to which they can post questions relating to that space's theme. 
 
-![answer](https://user-images.githubusercontent.com/96565654/177240946-a0c6b298-2fb7-4b72-877d-aa6325f65ff2.png)
+![create-space](https://user-images.githubusercontent.com/96565654/189800722-3162a636-1f4b-42f4-9b73-070f9711bf82.png)
 
+![view-space](https://user-images.githubusercontent.com/96565654/189800578-4f197af9-35de-4a4b-9bca-590f580be6d6.png)
 
-## User profile page
-From the user profile page, the logged-in user is able to see all of their posted questions and answers.
-
-![user-profile](https://user-images.githubusercontent.com/96565654/177241904-bcf7f8f9-b313-4b16-bd2b-b572ab2ec451.png)
 
 
 ## Technical Implementation Details
