@@ -2,23 +2,6 @@
     margin-top: 40px;
 }
 
-/* .allquestions-content {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 2%;
-    width: 800px;
-    max-width: 800px;
-    border: 1px solid #CCCCCC;
-    border-radius: 5px;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-} */
-
-/* .allquestions-content:hover {
-    background-color: #F7F7F7;
-} */
-
 .user-display {
     display: flex;
     flex-direction: row;
@@ -45,7 +28,6 @@
     align-items: center;
     padding-left: 30px;
     padding-right: 30px;
-    /* padding-bottom: 50px; */
     margin-bottom: 10px;
 }
 
@@ -56,11 +38,6 @@
 .question-content p {
     font-size: 15px;
 }
-
-/* .question-content img {
-    max-height: 300px;
-    max-width: 400px;
-} */
 
 .question-content button {
     font-size: 13px;

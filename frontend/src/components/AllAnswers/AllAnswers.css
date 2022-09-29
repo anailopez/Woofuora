@@ -22,24 +22,6 @@
     font-size: 13px;
 }
 
-/* .answer-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 30px;
-    padding-right: 30px;
-    background-color: white;
-    padding-bottom: 30px;
-} */
-
-/* .answer-content p {
-    font-size: 15px;
-    width: 600px;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-} */
-
 .answer-content button {
     font-size: 15px;
     font-weight: 500;
@@ -58,18 +40,7 @@
 .leave-answer-area {
     background-color: #F1F2F2;
     padding: 10px;
-    /* display: inline-flex;
-    flex-direction: row; */
 }
-
-/* .leave-answer-area input {
-    outline: none;
-    border: 1px solid #F1F2F2;
-    border-radius: 20px;
-    padding: 10px;
-    width: 50%;
-    margin-left: 80px;
-} */
 
 #add-comment-btn {
     color: white;
@@ -94,35 +65,10 @@
     padding-top: 20px;
 }
 
-/* .reply-input-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-top: 20px;
-} */
-
-/* .reply-input-area input {
-    outline: none;
-    border: 1px solid #DEE0E1;
-    border-radius: 20px;
-    padding: 15px;
-    width: 400px;
-    height: 10px;
-    margin-left: 80px;
-} */
-
-/* .reply-input-area button {
-    background-color: #265FFC;
-} */
-
-
 @media screen and (max-width:1000px) {
     .answer-content {
         display: flex;
         flex-direction: column;
-        /* justify-content: center;
-        align-items: center; */
         padding-left: 30px;
         padding-right: 30px;
         background-color: white;
@@ -153,13 +99,11 @@
         padding: 15px;
         width: 200px;
         height: 10px;
-        /* margin-left: 80px; */
     }
 
     .reply-input-area {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
         align-items: center;
         padding-top: 20px;
     }
@@ -206,7 +150,6 @@
     .reply-input-area {
         display: flex;
         flex-direction: row;
-        /* justify-content: center; */
         align-items: center;
         padding-top: 20px;
     }
@@ -253,7 +196,6 @@
     .reply-input-area {
         display: flex;
         flex-direction: row;
-        /* justify-content: center; */
         align-items: center;
         padding-top: 20px;
     }

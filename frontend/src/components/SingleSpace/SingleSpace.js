@@ -141,7 +141,7 @@ const SingleSpace = ({ isLoaded }) => {
                             <div id='not-spaces'>
                                 <div className='space-details'>
                                     <div id='sec-1'>
-                                        <img src={`${space.icon}`}></img>
+                                        <img alt='space icon' src={`${space.icon}`}></img>
                                         <h1>{space.name}</h1>
                                     </div>
                                     <div>

@@ -14,8 +14,6 @@ const AllSpaces = () => {
     const [description, setDescription] = useState('');
     const [icon, setIcon] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
-    const [hasSubmitted, setHasSubmitted] = useState(false);
-
     Modal.setAppElement('body');
 
     const dispatch = useDispatch();
@@ -70,14 +68,11 @@ const AllSpaces = () => {
         setDescription('');
         setIcon('');
         setValidationErrors('')
-        setHasSubmitted(false);
         setShowSpaceForm(false);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        setHasSubmitted(true);
 
         if (validationErrors.length > 0) {
             return alert('Please fix errors')

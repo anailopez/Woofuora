@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllReplies, thunkDeleteReply } from '../../store/replies';
 import './allreplies.css';

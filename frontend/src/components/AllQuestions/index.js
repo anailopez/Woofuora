@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetAllQuestions } from '../../store/questions';
 import SingleQuestion from '../SingleQuestion/SingleQuestion';

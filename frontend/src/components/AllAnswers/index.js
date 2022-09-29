@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkGetAllAnswers, thunkDeleteAnswer, thunkUpdateAnswer, thunkAddAnswer } from '../../store/answers';
+import { thunkGetAllAnswers, thunkDeleteAnswer, thunkAddAnswer } from '../../store/answers';
 import { thunkGetAllQuestions } from '../../store/questions';
 import { thunkCreateReply, thunkGetAllReplies } from '../../store/replies';
 import Modal from 'react-modal';
-import CreateAnswerForm from '../CreateAnswerForm';
 import AllReplies from '../AllReplies/AllReplies';
 import './AllAnswers.css';
 
@@ -12,7 +11,6 @@ const AllAnswers = ({ question }) => {
     const answersArr = useSelector(state => state.questionDetail.answers.orderedAnswers);
     const userId = useSelector(state => state.session.user.id);
     const answers = answersArr.find(answer => answer.questionId === question.id);
-    const [showAnswerForm, setShowAnswerForm] = useState(false);
     const [showReplyInput, setShowReplyInput] = useState(false);
     const [content, setContent] = useState('');
     const [currentAnswer, setCurrentAnswer] = useState('');
@@ -29,25 +27,6 @@ const AllAnswers = ({ question }) => {
     useEffect(() => {
         dispatch(thunkGetAllAnswers());
     }, [dispatch]);
-
-    function openAnswerModal() {
-        setShowAnswerForm(true)
-    }
-
-    function closeAnswerModal() {
-        setShowAnswerForm(false)
-    }
-
-    const styling = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-        },
-    };
 
     useEffect(() => {
         const errors = [];
@@ -176,7 +155,6 @@ const AllAnswers = ({ question }) => {
                                         <button onClick={() => { dispatch(thunkDeleteAnswer(answer.id)); dispatch(thunkGetAllAnswers()); dispatch(thunkGetAllQuestions()) }}>
                                             <i className="fa-solid fa-trash-can" /> Delete answer
                                         </button>
-                                        {/* <button><i className="fa-solid fa-pen" /> Edit Answer</button> */}
                                     </div>
                                 )}
                                 {answer.userId !== userId && (

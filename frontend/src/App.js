@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import HomePage from "./components/HomePage";
-import UserProfile from "./components/UserProfile";
 import SingleSpace from "./components/SingleSpace/SingleSpace";
 
 function App() {

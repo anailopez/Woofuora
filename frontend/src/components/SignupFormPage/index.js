@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
@@ -32,12 +31,6 @@ function SignupForm({ closeModal }) {
 
     return (
         <div className="signup-form-box">
-            {/* <div className='signup-here'>
-                <p>Already have a Woofuora account?</p>
-                <Link to='/login'>
-                    <button>Log in here!</button>
-                </Link>
-            </div> */}
             <div className="signup-form">
                 <form onSubmit={handleSubmit}>
                     <ul>
