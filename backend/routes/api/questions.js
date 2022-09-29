@@ -11,7 +11,6 @@ router.get('/', asyncHandler(async (req, res) => {
         include: 'User',
         order: [['updatedAt', 'DESC']]
     });
-    // console.log('***query results:', questions);
     return res.json(questions);
 }))
 

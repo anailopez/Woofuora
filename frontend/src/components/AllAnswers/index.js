@@ -98,9 +98,6 @@ const AllAnswers = ({ question }) => {
         if (body.length > 500) {
             errors.push('Comment cannot exceed 500 characters');
         }
-        // if (image.length > 0 && !image.match(/\.(jpg|jpeg|png|gif)$/)) {
-        //     errors.push('Please submit a valid image!');
-        // }
 
         setAnswerErrors(errors);
     }, [body]);
@@ -111,7 +108,6 @@ const AllAnswers = ({ question }) => {
         setHasSubmitted(true);
 
         if (answerErrors.length > 0) {
-            // await dispatch(thunkGetAllAnswers());
             return alert("Please fix errors with your answer");
         }
 
@@ -119,7 +115,6 @@ const AllAnswers = ({ question }) => {
             userId: userId,
             questionId: question.id,
             body,
-            // image,
             createdAt: new Date(),
             updatedAt: new Date()
         }
@@ -128,7 +123,6 @@ const AllAnswers = ({ question }) => {
 
         if (answer) {
             setBody('');
-            // setImage('');
             setAnswerErrors([]);
             setHasSubmitted(false);
         }
